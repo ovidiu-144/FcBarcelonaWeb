@@ -1,8 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <persoane>
-<persoana id="1">
-<nume>Popescu</nume>
-<prenume>Ion</prenume>
-<varsta>23</varsta>
-</persoana>
+    <persoana id="1">
+        <nume> Popescu </nume>
+        <prenume> Ion </prenume>
+        <varsta> 23 </varsta>
+        <email> PopescuIon@gmail.com </email>
+        <cnp> 1234567891234 </cnp>
+        <adresa>
+            <strada> Str Basarabi </strada>
+            <numar> Nr 380 </numar>
+            <judet> Iasi </judet>
+            <tara> Romania </tara>
+        </adresa>
+    </persoana>
+        <persoana id="2">
+        <nume> Spiridon </nume>
+        <prenume> Ovidiu </prenume>
+        <varsta> 20 </varsta>
+        <email> SpiridonOvidiu@gmail.com </email>
+        <cnp> 2222567891234 </cnp>
+        <adresa>
+            <strada> Calea Romanului </strada>
+            <numar> Nr 400 </numar>
+            <judet> Neamt </judet>
+            <tara> Romania </tara>
+        </adresa>
+
+    </persoana>
+        <persoana id="3">
+        <nume> Turnea </nume>
+        <prenume> Catalin </prenume>
+        <varsta> 54 </varsta>
+        <email> TurneaCatalin@gmail.com </email>
+        <cnp> 1234567891111 </cnp>
+        <adresa>
+            <strada> Sforii </strada>
+            <numar> Nr 12 </numar>
+            <judet> Botosani </judet>
+            <tara> Romania </tara>
+        </adresa>
+    </persoana>
+
+
 </persoane>
