@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE persoane SYSTEM "persoane.dtd">
 <persoane>
     <persoana id="1">
         <nume> Popescu </nume>
@@ -13,7 +14,8 @@
             <tara> Romania </tara>
         </adresa>
     </persoana>
-        <persoana id="2">
+
+    <persoana id="2">
         <nume> Spiridon </nume>
         <prenume> Ovidiu </prenume>
         <varsta> 20 </varsta>
@@ -25,9 +27,9 @@
             <judet> Neamt </judet>
             <tara> Romania </tara>
         </adresa>
-
     </persoana>
-        <persoana id="3">
+
+    <persoana id="3">
         <nume> Turnea </nume>
         <prenume> Catalin </prenume>
         <varsta> 54 </varsta>
@@ -40,6 +42,4 @@
             <tara> Romania </tara>
         </adresa>
     </persoana>
-
-
 </persoane>
