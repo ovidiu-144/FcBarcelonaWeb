@@ -3,9 +3,8 @@
 
 <head>
     <title> Programare Web - Proiect 1 </title>
-    <meta>
-    <link>
 </head>
+
 <style>
     table,
     th,
@@ -15,50 +14,67 @@
 </style>
 
 <body>
-    <h1> FC Barcelona </h1>
-    <h2> Descriere </h2>
-    <p> <strong> FC Barcelona </strong>
-        este o echipa de fotbal din prima liga a Spaniei,
-        care domina in mod constant fotbalul european
-    </p>
+    <center>
+        <h1> FC Barcelona </h1>
+        <h2> Descriere </h2>
+        <p> <strong> FC Barcelona </strong>
+            este o echipa de fotbal din prima liga a Spaniei,
+            care domina in mod constant fotbalul european
+        </p>
 
-    <p> Logo-ul Echipei </p>
-    <img src="src\logo.jpg" width="150" height="150">
+        <p> Logo-ul Echipei </p>
+        <img src="src\logo.jpg" width="150" height="150">
 
-    <p> <strong> Listă de jucători </strong></p>
-    <table>
-        <tr>
-            <th> Nume </th>
-            <th> Prenume </th>
-            <th> Poziție </th>
-        </tr>
-        <tr>
-            <td> Yamal </td>
-            <td> Lamine </td>
-            <td> RW </td>
-        </tr>
-        <tr>
-            <td> Dias </td>
-            <td> Raphael </td>
-            <td> LW </td>
-        </tr>
-    </table>
+        <p> <strong> Listă de jucători </strong></p>
+        <table>
+            <tr>
+                <th> Nume </th>
+                <th> Prenume </th>
+                <th> Poziție </th>
+            </tr>
+            <tr>
+                <td> Yamal </td>
+                <td> Lamine </td>
+                <td> RW </td>
+            </tr>
+            <tr>
+                <td> Dias </td>
+                <td> Raphael </td>
+                <td> LW </td>
+            </tr>
+        </table>
 
-    <p>Caută jucători</p>
-    <form>
-        <label for="fname">Nume:</label><br>
-        <input type="text" id="fname" name="fname"><br>
-        <label for="lname">Prenume:</label><br>
-        <input type="text" id="lname" name="lname"><br>
-        <label for="fname">Poziție</label> <br>
-        <select name="lname" id="lname" multiple>
-            <option value="FW">FW</option>
-            <option value="MD">MD</option>
-            <option value="DF">DF</option>
-            <option value="GK">GK</option>
-        </select>
-        <input type="submit" value="Submit">
-    </form>
+        <p>Caută jucători</p>
+        <form>
+            <label for="fname">Nume:</label><br>
+            <input type="text" id="fname" name="fname"><br>
+            <label for="lname">Prenume:</label><br>
+            <input type="text" id="lname" name="lname"><br>
+            <label for="fname">Poziție</label> <br>
+            <select name="lname" id="lname">
+                <option value="FW">FW</option>
+                <option value="MD">MD</option>
+                <option value="DF">DF</option>
+                <option value="GK">GK</option>
+            </select><br>
+            <label for="pwd">Parolă:</label><br>
+            <input type="password" id="pwd" name="pwd"><br>
+
+            <label for="fname"> Sunt de acord cu termenii si condițiile</label>
+            <input type="checkbox" name="" ><br>
+
+            <input type="submit" value="Submit">
+
+            
+            <p>Informații luate de la <a href="https://www.w3schools.com/" target="_blank">W3Schools.com!</a></p>
+        </form>
+        <br>
+        <br>
+        <p>Link-ul principal de unde sunt colectate datele</p>
+
+        <iframe src="https://www.fcbarcelona.com/en/" height="400" width="800"></iframe>
+    </center>
+
 </body>
 
 </html>
