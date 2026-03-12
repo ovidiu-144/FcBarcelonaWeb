@@ -1,0 +1,38 @@
+
+.meniu{
+    border-radius: 10px;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    background-color: #004d98;
+    font-size: 30px;
+
+    display: flex;
+    justify-content: center;
+    
+    gap: 60px;
+
+    a {
+        background-color: #a50044;
+        color: white;
+        font-family: Arial;
+        text-decoration: none;
+        height: 100px;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        /* &:nth-child(odd) {
+            color: red;
+        }
+        &:nth-child(even) {
+            color: blue;
+        } */
+    }
+}
+
+/* .centru{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+} */
