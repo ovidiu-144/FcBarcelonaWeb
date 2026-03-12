@@ -1,4 +1,12 @@
 
+/* Centrare pagina pe mijloc */
+body 
+{ 
+ margin: 0; 
+ padding: 0; 
+ text-align: center; 
+} 
+
 .meniu{
     border-radius: 10px;
     list-style-type: none;
@@ -28,11 +36,29 @@
             color: blue;
         } */
     }
+    a:hover{
+        background-color: #ff0000;
+        outline: 3px solid black;
+    }
 }
 
-/* .centru{
+form {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 500px;
-} */
+    gap: 10px;
+}
+
+p::first-letter {
+    font-size: 120%;
+    color: red;
+}
+
+.tabel{
+    th,
+    td {
+        border: 1px solid black;
+    }
+    margin: auto;
+    
+}
