@@ -62,3 +62,27 @@ p::first-letter {
     margin: auto;
     
 }
+
+.titlu {
+    font-size: 48px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #edbb00 0%, #a50044 50%, #004d98 100%);
+    
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;    
+    display: inline-block;
+}
+
+
+.logo{
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+}
+.logo:hover{
+    transform: rotate(360deg);
+    transition: transform 1s ease-in-out;
+}
