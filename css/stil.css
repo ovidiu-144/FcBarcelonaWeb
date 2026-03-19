@@ -1,10 +1,9 @@
 
 /* Centrare pagina pe mijloc */
-body 
-{ 
- margin: 0; 
- padding: 0; 
- text-align: center; 
+body{ 
+    margin: 0; 
+    padding: 0; 
+    text-align: center; 
 } 
 
 .meniu{
@@ -29,12 +28,6 @@ body
         padding: 5px;
         display: flex;
         align-items: center;
-        /* &:nth-child(odd) {
-            color: red;
-        }
-        &:nth-child(even) {
-            color: blue;
-        } */
     }
     a:hover{
         background-color: #ff0000;
@@ -85,4 +78,43 @@ p::first-letter {
 .logo:hover{
     transform: rotate(360deg);
     transition: transform 1s ease-in-out;
+}
+
+.video{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: auto;
+    background-color: #004d98;
+
+    
+}
+
+
+
+
+@media print{
+    .titlu{
+        font-size: 24px;
+        background: none;
+        color: black;
+    }
+    .meniu {
+        background: none;
+        text-align: left;
+        border: 1px solid #ccc;
+        padding: 10px;
+        display: flex;
+        justify-content: center;    
+    }
+
+    .meniu a {
+        background: none;
+        color: black;
+        display: inline-block;
+        margin-right: 20px;
+        padding: 0;
+        height: auto;
+        font-size: 16px;
+        text-decoration: underline;
+    }
 }
