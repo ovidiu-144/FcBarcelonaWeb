@@ -40,3 +40,66 @@ function resetare(){
     document.getElementById('numeBrowser').innerHTML = "";
     document.getElementById('versiuneBrowser').innerHTML = "";
 }
+
+function desenareDreptunghi(){
+    let canvas = document.getElementById('myCanvas');
+    let ctx = canvas.getContext('2d');
+    let fillColour = document.getElementById('fillColour').value;
+    ctx.fillStyle = fillColour;
+
+    let contColour = document.getElementById('contColour').value;
+    ctx.strokeStyle = contColour;
+    ctx.lineWidth = 2;
+
+    let x1 = parseInt(document.getElementById('x1').innerHTML);
+    let y1 = parseInt(document.getElementById('y1').innerHTML);
+    let x2 = parseInt(document.getElementById('x2').innerHTML);
+    let y2 = parseInt(document.getElementById('y2').innerHTML);
+
+
+    if (!isNaN(x1) && !isNaN(x2) ) {
+        let width = x2 - x1;
+        let height = y2 - y1;
+
+        ctx.fillRect(x1, y1, width, height);
+        ctx.strokeRect(x1, y1, width, height);
+    }
+}
+
+
+function getMousePosition(canvas, event) {
+
+    let rect = canvas.getBoundingClientRect();
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+
+    //primul click - setam x1, y1
+    if (document.getElementById('x1').innerHTML == "") {
+        document.getElementById('x1').innerHTML = x;
+        document.getElementById('y1').innerHTML = y;
+    }
+    //al doilea click - setam x2, y2
+    else if (document.getElementById('x2').innerHTML == "") {
+        document.getElementById('x2').innerHTML = x;
+        document.getElementById('y2').innerHTML = y;
+    }
+    //al treilea click - resetam totul
+    else {
+        //resetam coordonatele
+        document.getElementById('x1').innerHTML = "";
+        document.getElementById('y1').innerHTML = "";
+        document.getElementById('x2').innerHTML = "";
+        document.getElementById('y2').innerHTML = "";
+
+        //resetam canvasul
+        let ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+}
+
+let canvas = document.getElementById('myCanvas');
+canvas.addEventListener('click', function(event) {
+    getMousePosition(canvas, event);
+    desenareDreptunghi();
+});

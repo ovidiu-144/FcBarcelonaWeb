@@ -89,7 +89,11 @@ p::first-letter {
     
 }
 
-
+canvas {
+    border: 1px solid black;
+    margin: auto;
+    display: block;
+}
 
 
 @media print{
