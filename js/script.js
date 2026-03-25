@@ -103,3 +103,44 @@ canvas.addEventListener('click', function(event) {
     getMousePosition(canvas, event);
     desenareDreptunghi();
 });
+
+
+///functie pentru adaugarea unei linii in tabel
+function addRow(){
+    let table = document.getElementById('dynamicTable');
+    let pos = parseInt(document.getElementById('posInput').value);
+    let color = document.getElementById('colorPicker').value;
+
+    if (isNaN(pos) || pos < 1 || pos > table.rows.length + 1) {
+        alert("Te rog introdu o poziție validă între 1 și " + (table.rows.length + 1));
+        return;
+    }
+
+    const colCount = table.rows[0].cells.length;
+    let newRow = table.insertRow(pos);
+    for (let i = 0; i < colCount; i++) {
+        let newCell = newRow.insertCell(i);
+        newCell.innerHTML = "Nou";
+        newCell.style.color = color;
+        newCell.style.backgroundColor = color;
+    }
+}
+
+function addColumn(){
+    let table = document.getElementById('dynamicTable');
+    let pos = parseInt(document.getElementById('posInput').value);
+    let color = document.getElementById('colorPicker').value;
+
+    if (isNaN(pos) || pos < 1 || pos > table.rows[0].cells.length + 1) {
+        alert("Te rog introdu o poziție validă între 1 și " + (table.rows[0].cells.length + 1));
+        return;
+    }
+
+    for (let i = 0; i < table.rows.length; i++) {
+        let newCell = table.rows[i].insertCell(pos);
+        newCell.innerHTML = "Nou";
+        newCell.style.color = color;
+        newCell.style.backgroundColor = color;
+    }
+
+}

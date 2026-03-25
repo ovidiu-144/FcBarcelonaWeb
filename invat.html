@@ -65,8 +65,39 @@
 
         <p id = "x2"></p>
         <p id = "y2"></p>
+    </section>
 
+    <section>
+        <label for="posInput">Poziție (index):</label>
+        <input type="number" id="posInput" value="1" min="1">
 
+        <label for="colorPicker">Culoare:</label>
+        <input type="color" id="colorPicker" value="#ff0000">
+
+        <input type="button" value="Adaugă Linie" onclick="addRow()">
+        <input type="button" value="Adaugă Coloană" onclick="addColumn()">
+        <table class="tabel" id = "dynamicTable">
+            <tr>
+                <th>Nume</th>
+                <th>Goluri</th>
+                <th>Asisturi</th>
+            </tr>
+            <tr>
+                <td>Lionel Messi</td>
+                <td>672</td>
+                <td>303</td>
+            </tr>
+            <tr>
+                <td>César Rodríguez</td>
+                <td>225</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Luis Suárez</td>
+                <td>195</td>
+                <td>113</td>
+            </tr>
+        </table>
     </section>
 
 
