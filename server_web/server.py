@@ -1,50 +1,79 @@
 import socket
-# creeaza un server socket
-serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# specifica ca serverul va rula pe portul 5678, accesibil de pe orice ip al serverului
-serversocket.bind(('', 5678))
-# serverul poate accepta conexiuni; specifica cati clienti pot astepta la coada
-serversocket.listen(5)
 
-while True:
-    print ("#########################################################################")
-    print ('Serverul asculta potentiali clienti.')
-    # asteapta conectarea unui client la server
-    # metoda `accept` este blocanta => clientsocket, care reprezinta socket-ul corespunzator clientului conectat
-    (clientsocket, address) = serversocket.accept()
-    print ('S-a conectat un client.')
-    # se proceseaza cererea si se citeste prima linie de text
-    cerere = ""
-    linieDeStart = ""
+def content_type_sw(type):
+    if type == "html":
+        return "text/html"
+    elif type == "css":
+        return "text/css"
+    elif type == "js":
+        return "application/js"
+    elif type == "jpg":
+        return "image/jpeg"
+    elif type == "png":
+        return "text/png"
+    elif type == "jpg" or type == "jpeg":
+        return "image/jpeg"
+    elif type == "gif":
+        return "text/gif"
+    elif type == "ico":
+        return "image/x-icon"
+    else:
+        return ""
+
+
+def server():
+    # creeaza un server socket
+    serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # specifica ca serverul va rula pe portul 5678, accesibil de pe orice ip al serverului
+    serversocket.bind(('', 5678))
+    # serverul poate accepta conexiuni; specifica cati clienti pot astepta la coada
+    serversocket.listen(5)
+
     while True:
-        data = clientsocket.recv(1024)
-        cerere = cerere + data.decode()
-        print ('S-a citit mesajul: \n---------------------------\n' + cerere + '\n---------------------------')
-        pozitie = cerere.find('\r\n')
-        if (pozitie > -1):
-            linieDeStart = cerere[0:pozitie]
-        print ('S-a citit linia de start din cerere: ##### ' + linieDeStart + '#####')
-        break
+        print ("#########################################################################")
+        print ('Serverul asculta potentiali clienti.')
+        # asteapta conectarea unui client la server
+        # metoda `accept` este blocanta => clientsocket, care reprezinta socket-ul corespunzator clientului conectat
+        (clientsocket, address) = serversocket.accept()
+        print ('S-a conectat un client.')
+        # se proceseaza cererea si se citeste prima linie de text
+        cerere = ""
+        linieDeStart = ""
+        while True:
+            data = clientsocket.recv(1024)
+            cerere = cerere + data.decode()
+            print ('S-a citit mesajul: \n---------------------------\n' + cerere + '\n---------------------------')
+            pozitie = cerere.find('\r\n')
+            if (pozitie > -1):
+                linieDeStart = cerere[0:pozitie]
+            print ('S-a citit linia de start din cerere: ##### ' + linieDeStart + '#####')
+            break
 
-    print ('S-a terminat cititrea.')
-    # TODO interpretarea sirului de caractere `linieDeStart` pentru a extrage numele resursei cerute
-    
-    mesaj = linieDeStart.split(' ')
-    mesaj_metoda = mesaj[1].split('/')[1]
+        print ('S-a terminat cititrea.')
+        # TODO interpretarea sirului de caractere `linieDeStart` pentru a extrage numele resursei cerute
+        
+        mesaj = linieDeStart.split(' ')
+        mesaj_metoda = mesaj[1].split('/')[1]
 
-    raspuns = "Hello World " + mesaj_metoda
-    lenght_raspuns = len(raspuns)
-    content = "HTTP/1.1 200 OK\r\n" + \
-            "Content-Length: " + str(lenght_raspuns) + "\r\n" + \
-            "Content-Type: text/html\r\n" + \
-            "Server: Python Server\r\n" + \
-            "\r\n" + \
-            raspuns
-
-    print (content)
-    # TODO trimiterea răspunsului HTTP
-    clientsocket.sendall(content.encode('utf-8'))
+        content_type = content_type_sw(mesaj_metoda.split('.')[1])
 
 
-    clientsocket.close()
-    print ('S-a terminat comunicarea cu clientul.') 
+        response = "Hello World " + mesaj_metoda
+        lenght_response = len(response)
+        content = "HTTP/1.1 200 OK\r\n" + \
+                "Content-Length: " + str(lenght_response) + "\r\n" + \
+                "Content-Type: " + content_type + "\r\n" + \
+                "Server: Python Server\r\n" + \
+                "\r\n" + \
+                "/continut/" + mesaj_metoda
+
+        print (content)
+        # TODO trimiterea răspunsului HTTP
+        clientsocket.sendall(content.encode('utf-8'))
+
+
+        clientsocket.close()
+        print ('S-a terminat comunicarea cu clientul.') 
+
+server()
+
