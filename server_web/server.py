@@ -1,6 +1,6 @@
 import socket
 
-def content_type_sw(type):
+def content_type(type):
     if type == "html":
         return "text/html"
     elif type == "css":
@@ -29,49 +29,56 @@ def server():
     # serverul poate accepta conexiuni; specifica cati clienti pot astepta la coada
     serversocket.listen(5)
 
+    print ('Serverul a pornit pe portul 5678...http://localhost:5678/')
     while True:
         print ("#########################################################################")
-        print ('Serverul asculta potentiali clienti.')
+        print ('Serverul asculta potentiali clienti')
         # asteapta conectarea unui client la server
         # metoda `accept` este blocanta => clientsocket, care reprezinta socket-ul corespunzator clientului conectat
         (clientsocket, address) = serversocket.accept()
         print ('S-a conectat un client.')
+        
         # se proceseaza cererea si se citeste prima linie de text
-        cerere = ""
-        linieDeStart = ""
+        request = ""
+        start_line = ""
         while True:
             data = clientsocket.recv(1024)
-            cerere = cerere + data.decode()
-            print ('S-a citit mesajul: \n---------------------------\n' + cerere + '\n---------------------------')
-            pozitie = cerere.find('\r\n')
+            request = request + data.decode()
+            print ('S-a citit mesajul: \n---------------------------\n' + request + '\n---------------------------')
+            pozitie = request.find('\r\n')
             if (pozitie > -1):
-                linieDeStart = cerere[0:pozitie]
-            print ('S-a citit linia de start din cerere: ##### ' + linieDeStart + '#####')
+                start_line = request[0:pozitie]
+            print ('S-a citit linia de start din cerere: ##### ' + start_line + '#####')
             break
 
         print ('S-a terminat cititrea.')
-        # TODO interpretarea sirului de caractere `linieDeStart` pentru a extrage numele resursei cerute
         
-        mesaj = linieDeStart.split(' ')
-        mesaj_metoda = mesaj[1].split('/')[1]
+        # TODO interpretarea sirului de caractere `start_line` pentru a extrage numele resursei cerute
 
-        content_type = content_type_sw(mesaj_metoda.split('.')[1])
+        try:
+            file = start_line.split(' ')[1]
+            type = content_type(file.split('.')[1]) + "; charset=utf-8"
 
+            relative_path = "continut/" + file
+            with open (relative_path, 'rb') as f:
+                response = f.read()
+            status = "200 OK"
+        except Exception as e:
+            print (e)
+            type = "text/html; charset=utf-8"
+            response = b"File not found"
+            status = "404 Not Found"
 
-        response = "Hello World " + mesaj_metoda
+        # response = "Hello World " + file
         lenght_response = len(response)
-        content = "HTTP/1.1 200 OK\r\n" + \
+        content = "HTTP/1.1 " + status + "\r\n" + \
                 "Content-Length: " + str(lenght_response) + "\r\n" + \
-                "Content-Type: " + content_type + "\r\n" + \
+                "Content-Type: " + type + "\r\n" + \
                 "Server: Python Server\r\n" + \
-                "\r\n" + \
-                "/continut/" + mesaj_metoda
-
-        print (content)
+                "\r\n"
+        
         # TODO trimiterea răspunsului HTTP
-        clientsocket.sendall(content.encode('utf-8'))
-
-
+        clientsocket.sendall(content.encode('utf-8') + response)
         clientsocket.close()
         print ('S-a terminat comunicarea cu clientul.') 
 
