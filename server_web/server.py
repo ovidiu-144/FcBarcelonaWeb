@@ -17,6 +17,10 @@ def content_type(type):
         return "text/gif"
     elif type == "ico":
         return "image/x-icon"
+    elif type == "json":
+        return "application/json"
+    elif type == "xml":
+        return "application/xml"
     else:
         return ""
 

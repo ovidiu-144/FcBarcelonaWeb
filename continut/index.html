@@ -4,44 +4,23 @@
 <head>
     <title> Programare Web - Proiect 1 </title>
     <link type="text/css" rel = "stylesheet" href = "css/stil.css">
+    <script src="js/script.js"></script>
 </head>
 
 
-
 <body>
-    <nav class="meniu">
-        <a href="index.html">Acasa</a>
-        <a href="despre.html">Despre</a>
-        <a href="inregistrare.html">Inregistrare</a>
-        <a href="video.html">Video</a>
-        <a href="desen.html">Desen</a>
-        <a href="invat.html">Învăț</a>
-    </nav>
-        <h1>
-            Video
-        </h1>
-    <p>
-        Această pagina conține Informații despre tab-urile site-ului
-    </p>
+        <nav class="meniu">
+            <a onclick="schimbaContinut('acasa')">Acasa</a>
+            <a onclick="schimbaContinut('despre')">Despre</a>
+            <a onclick="schimbaContinut('inregistrare')">Inregistrare</a>
+            <a onclick="schimbaContinut('video')">Video</a>
+            <a onclick="schimbaContinut('desen')">Desen</a>
+            <a onclick="schimbaContinut('invat')">Învăț</a>
+        </nav>
+    <main id = "continut">
 
-    <h2>
-        Despre.html
-    </h2>
-    <p>
-        => Conține Informații generale legate de continutul site ului
-    </p><br>
 
-    <h2>
-        Înregistrare.html
-    </h2>
-    <p>
-        => Conține detalii legate de inregistare utilizatorului
-    </p><br>
-    
-    <h2>
-        Video.html
-    </h2>
-    <p>
-        => Conține video-uri de pe youtube
-    </p>
+        <h2>Facem ceva ajax</h2>
+        <button type="button" onclick="schimbaContinut('acasa')">Acasa</button>
+    </main>
 </body>
