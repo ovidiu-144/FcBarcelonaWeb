@@ -98,11 +98,17 @@ function getMousePosition(canvas, event) {
 
 }
 
-let canvas = document.getElementById('myCanvas');
-canvas.addEventListener('click', function(event) {
-    getMousePosition(canvas, event);
-    desenareDreptunghi();
+
+// Adăugăm un event listener pentru click pe întregul document dupa ce pagina s-a încărcat complet
+document.addEventListener('click', function(event) {
+    // Verificăm dacă elementul pe care s-a dat click are ID-ul 'myCanvas'
+    if (event.target && event.target.id === 'myCanvas') {
+        let canvas = event.target;
+        getMousePosition(canvas, event);
+        desenareDreptunghi();
+    }
 });
+
 
 
 ///functie pentru adaugarea unei linii in tabel
