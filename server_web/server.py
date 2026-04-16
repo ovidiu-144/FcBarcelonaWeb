@@ -2,6 +2,7 @@ import gzip
 import socket
 import threading
 import os
+import json
 
 def content_type(type):
     if type == "html":
@@ -32,33 +33,58 @@ def handle_client(clientsocket, address):
         request = ""
         start_line = ""
         while True:
-            data = clientsocket.recv(1024)
+            data = clientsocket.recv(4096)
             request = request + data.decode()
-            # print ('S-a citit mesajul: \n---------------------------\n' + request + '\n---------------------------')
             pozitie = request.find('\r\n')
             if (pozitie > -1):
                 start_line = request[0:pozitie]
-            # print ('S-a citit linia de start din cerere: ##### ' + start_line + '#####')
             break
+        
         accepts_gzip = 'gzip' in request.lower() and 'accept-encoding' in request.lower()
-        try:
-            file = start_line.split(' ')[1]
-            if file == '/':
-                file = 'index.html'
-            
-            extension = file.rsplit('.', 1)[-1] if '.' in file else ''
-            type = content_type(extension) + "; charset=utf-8"
 
-            relative_path = os.path.join("continut", file.lstrip('/'))
-            with open (relative_path, 'rb') as f:
-                response = f.read()
+        method = start_line.split(' ')[0]
+        resource = start_line.split(' ')[1]
+
+        # ── POST /api/utilizatori ────────────────────────────────────────
+        if method == 'POST' and resource == '/api/utilizatori':
+            body = request.split('\r\n\r\n', 1)[1] if '\r\n\r\n' in request else ''
+            
+            # Body-ul vine ca JSON: {"utilizator": "Ion", "parola": "123"}
+            utilizator = json.loads(body)
+
+            path = os.path.join("continut", "resurse", "utilizatori.json")
+
+            os.makedirs("resurse", exist_ok=True)
+            utilizatori = json.load(open(path, encoding='utf-8')) if os.path.exists(path) else []
+            utilizatori.append(utilizator)
+            json.dump(utilizatori, open(path, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
+
+            print(f"[API] Utilizator salvat: {utilizator}")
+            response = json.dumps({"mesaj": "Succes", "utilizator": utilizator}, ensure_ascii=False).encode('utf-8')
+            type = "application/json; charset=utf-8"
             status = "200 OK"
-        except Exception as e:
-            print (e)
-            type = "text/html; charset=utf-8"
-            response = b"File not found"
-            status = "404 Not Found"
             accepts_gzip = False
+
+        # ── GET fișiere statice ──────────────────────────────────────────
+        else:
+            try:
+                file = resource
+                if file == '/':
+                    file = 'index.html'
+
+                extension = file.rsplit('.', 1)[-1] if '.' in file else ''
+                type = content_type(extension) + "; charset=utf-8"
+
+                relative_path = os.path.join("continut", file.lstrip('/'))
+                with open (relative_path, 'rb') as f:
+                    response = f.read()
+                status = "200 OK"
+            except Exception as e:
+                print (e)
+                type = "text/html; charset=utf-8"
+                response = b"File not found"
+                status = "404 Not Found"
+                accepts_gzip = False
         
         extra_headers = ""
         if accepts_gzip:
@@ -86,19 +112,14 @@ def handle_client(clientsocket, address):
         print (f"[THREAD {threading.current_thread().name}] S-a terminat comunicarea cu clientul: {address}")
 
 def server():
-    # creeaza un server socket
     serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # specifica ca serverul va rula pe portul 5678, accesibil de pe orice ip al serverului
     serversocket.bind(('', 5678))
-    # serverul poate accepta conexiuni; specifica cati clienti pot astepta la coada
     serversocket.listen(5)
 
     print ('Serverul a pornit pe portul 5678...http://localhost:5678/')
     while True:
         print ("#" * 50)
         print ('Serverul asculta potentiali clienti')
-        # asteapta conectarea unui client la server
-        # metoda `accept` este blocanta => clientsocket, care reprezinta socket-ul corespunzator clientului conectat
         (clientsocket, address) = serversocket.accept()
         print (f"S-a conectat un client la {address}.")
         
@@ -111,4 +132,3 @@ def server():
         print (f"[THREAD {client_thread.name}] A fost pornit un thread pentru a deservi clientul conectat la {address}.")
 
 server()
-

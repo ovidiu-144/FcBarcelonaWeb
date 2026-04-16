@@ -191,3 +191,80 @@ function myFunction(xml) {
     }
     document.getElementById("demo").innerHTML = table;
 }
+
+
+function valideazaUtilizator() {
+    // Luăm valorile introduse de utilizator
+    let userIntrodus = document.getElementById('username').value;
+    let passIntrodus = document.getElementById('password').value;
+    let rezultatElement = document.getElementById('rezultat');
+
+    // Creăm cererea AJAX pentru a lua fișierul JSON
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // Verificăm dacă cererea a fost finalizată cu succes
+        if (this.readyState == 4 && this.status == 200) {
+            // Conversia textului JSON în obiect JavaScript
+            let utilizatori = JSON.parse(this.responseText);
+            let gasit = false;
+
+            // Verificăm dacă datele se potrivesc
+            for (let i = 0; i < utilizatori.length; i++) {
+                if (utilizatori[i].utilizator === userIntrodus && utilizatori[i].parola === passIntrodus) {
+                    gasit = true;
+                    break;
+                }
+            }
+
+            // Afișăm rezultatul
+            if (gasit) {
+                rezultatElement.innerHTML = "Utilizator și parolă corecte!";
+                rezultatElement.style.color = "green";
+            } else {
+                rezultatElement.innerHTML = "Utilizator sau parolă incorectă!";
+                rezultatElement.style.color = "red";
+            }
+        }
+    };
+    
+    // Asigură-te că calea este corectă față de locul unde se află index.html
+    xhttp.open("GET", "resurse\\utilizatori.json", true);
+    xhttp.send();
+}
+
+
+function inregistreazaUtilizator() {
+    let user = document.getElementById('name').value;
+    let pass = document.getElementById('password').value;
+    let mesaj = document.getElementById('mesajInregistrare');
+
+    let dateUtilizator = {
+        utilizator: user,
+        parola: pass
+    };
+
+    // Creăm cererea AJAX pentru a trimite datele către server
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                mesaj.innerHTML = "Utilizator înregistrat cu succes!";
+                mesaj.style.color = "green";
+            } else {
+                mesaj.innerHTML = "Eroare la server: " + this.status;
+                mesaj.style.color = "red";
+            }
+        }
+    };
+
+    // Deschidem cererea POST către calea virtuală
+    xhttp.open("POST", "/api/utilizatori", true);
+    
+    // Setăm header-ul pentru a informa serverul că trimitem date JSON
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    
+    // Transformăm obiectul JavaScript în șir JSON și îl trimitem
+    xhttp.send(JSON.stringify(dateUtilizator));
+
+
+}

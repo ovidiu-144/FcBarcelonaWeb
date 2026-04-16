@@ -20,14 +20,14 @@
 
     <form>
 
-        <label for="fname">Nume:</label>
-        <input type="text" id="fname" name="fname">
+        <label for="name">Nume:</label>
+        <input type="text" id="name" name="name">
 
-        <label for="lname">Prenume:</label>
-        <input type="text" id="lname" name="lname">
+        <label for="prenume">Prenume:</label>
+        <input type="text" id="prenume" name="prenume">
 
-        <label for="pwd">Parolă:</label>
-        <input type="password" id="pwd" name="pwd">
+        <label for="password">Parolă:</label>
+        <input type="password" id="password" name="password">
 
         <label for="email">Email:</label>
         <input type="email" id = "email" name="email">
@@ -72,7 +72,11 @@
         <label for="desc">Descriere</label>
         <input type="text" name = "desc" id ="desc"><br>
 
-        <input type="submit" value="Inregistrare" disabled>
+        <!-- O sa luam doar numele si parola -->
+        <button type="button" value="Inregistrare" onclick="inregistreazaUtilizator()">Inregistrare</button>
+
+        <p id = "mesajInregistrare"></p>
+
         <p>Informații luate de la <a href="https://www.w3schools.com/" target="_blank">W3Schools.com!</a></p>
     </form>
 </body>
