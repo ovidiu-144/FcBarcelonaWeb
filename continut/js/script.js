@@ -171,21 +171,23 @@ function loadDoc() {
             myFunction(this);
         }
     };
-    xhttp.open("GET", "resurse\\cd_catalog.xml", true);
+    xhttp.open("GET", "resurse\\persoane.xml", true);
     xhttp.send();
 }
 
 function myFunction(xml) {
     var i;
     var xmlDoc = xml.responseXML;
-    var table="<tr><th>Artist</th><th>Title</th></tr>";
-    var x = xmlDoc.getElementsByTagName("CD");
+    var table="<tr><th>Nume</th><th>Prenume</th><th>Varsta</th></tr>";
+    var x = xmlDoc.getElementsByTagName("persoana");
     for (i = 0; i <x.length; i++) { 
         table += "<tr><td>" +
-        x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+        x[i].getElementsByTagName("nume")[0].childNodes[0].nodeValue +
         "</td><td>" +
-        x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+        x[i].getElementsByTagName("prenume")[0].childNodes[0].nodeValue +
+        "</td><td>" +
+        x[i].getElementsByTagName("varsta")[0].childNodes[0].nodeValue +
         "</td></tr>";
     }
     document.getElementById("demo").innerHTML = table;
-    }
+}
