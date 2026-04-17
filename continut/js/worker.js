@@ -1,3 +1,4 @@
+
 self.onmessage = function(e) {
     //alert("Am primit mesajul: " + e.data);
     console.log("Am primit mesajul: ", e.data);
@@ -15,12 +16,12 @@ function afiseazaCatalog(catalog) {
     let tbody = "";
 
     // 2. Parcurgem fiecare obiect din catalog folosind forEach
-    catalog.forEach((produs) => {
+    catalog.forEach((product) => {
         // Creăm un element de tip rând (tr)
         tbody += `<tr>
-            <td>${produs.id}</td>
-            <td>${produs.nume}</td>
-            <td>${produs.cantitate}</td>
+            <td>${product.id}</td>
+            <td>${product.nume}</td>
+            <td>${product.cantitate}</td>
         </tr>`;
     });
     if (tbody === "") {
