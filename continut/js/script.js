@@ -175,19 +175,59 @@ function loadDoc() {
     xhttp.send();
 }
 
+
+//forma XML
+    // <jucator id="1">
+    //     <nume> ter Stegen </nume>
+    //     <prenume> Marc-Andre </prenume>
+    //     <varsta> 32 </varsta>
+    //     <nationalitate> Germania </nationalitate>
+    //     <pozitie> Portar </pozitie>
+    //     <numar_tricou> 1 </numar_tricou>
+    //     <valoare_piata> 20000000 </valoare_piata>
+    //     <contract>
+    //         <inceput> 2017-07-01 </inceput>
+    //         <sfarsit> 2028-06-30 </sfarsit>
+    //         <salariu_saptamanal> 220000 </salariu_saptamanal>
+    //         <clauze>
+    //             <clauza> Clauza de reziliere: 400000000 </clauza>
+    //         </clauze>
+    //     </contract>
+    // </jucator>
+
+
 function myFunction(xml) {
     var i;
     var xmlDoc = xml.responseXML;
-    var table="<tr><th>Nume</th><th>Prenume</th><th>Varsta</th></tr>";
-    var x = xmlDoc.getElementsByTagName("persoana");
-    for (i = 0; i <x.length; i++) { 
+    var table="<tr><th>Prenume</th><th>Nume</th><th>Varsta</th><th>Nationalitate</th><th>Pozitie</th><th>Numar Tricou</th><th>Valoare Piata</th><th>Inceput</th><th>Sfarsit</th><th>Salariu</th></tr>";
+    var x = xmlDoc.getElementsByTagName("jucator");
+    for (i = 0; i < x.length; i++) { 
         table += "<tr><td>" +
-        x[i].getElementsByTagName("nume")[0].childNodes[0].nodeValue +
-        "</td><td>" +
         x[i].getElementsByTagName("prenume")[0].childNodes[0].nodeValue +
-        "</td><td>" +
+            "</td><td>" +
+        x[i].getElementsByTagName("nume")[0].childNodes[0].nodeValue +
+            "</td><td>" +
         x[i].getElementsByTagName("varsta")[0].childNodes[0].nodeValue +
-        "</td></tr>";
+            "</td><td>" +
+        x[i].getElementsByTagName("nationalitate")[0].childNodes[0].nodeValue +
+            "</td><td>" +
+        x[i].getElementsByTagName("pozitie")[0].childNodes[0].nodeValue +
+            "</td><td>" +
+        x[i].getElementsByTagName("numar_tricou")[0].childNodes[0].nodeValue +
+            "</td><td>" +
+        x[i].getElementsByTagName("valoare_piata")[0].childNodes[0].nodeValue +
+            "</td><td>";
+        
+        var contract = x[i].getElementsByTagName("contract")[0];
+        if (contract) {
+            table +=contract.getElementsByTagName("inceput")[0].textContent + "</td><td>" +
+                    contract.getElementsByTagName("sfarsit")[0].textContent + "</td><td>" +
+                    contract.getElementsByTagName("salariu_saptamanal")[0].textContent;
+        } else {
+            // Dacă nu există contract, punem celule goale să nu stricăm tabelul
+            table += "<td>-</td><td>-</td><td>-</td>";
+        }
+        table += "</td></tr>";
     }
     document.getElementById("demo").innerHTML = table;
 }

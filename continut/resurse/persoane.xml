@@ -1,45 +1,428 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE persoane SYSTEM "persoane.dtd">
-<persoane>
-    <persoana id="1">
-        <nume> Popescu </nume>
-        <prenume> Ion </prenume>
+<!DOCTYPE jucatori SYSTEM "persoane.dtd">
+<jucatori>
+
+    <!-- ==================== PORTARI ==================== -->
+
+    <jucator id="1">
+        <nume> Garcia </nume>
+        <prenume> Joan </prenume>
         <varsta> 23 </varsta>
-        <email> PopescuIon@gmail.com </email>
-        <cnp> 1234567891234 </cnp>
-        <adresa>
-            <strada> Str Basarabi </strada>
-            <numar> Nr 380 </numar>
-            <judet> Iasi </judet>
-            <tara> Romania </tara>
-        </adresa>
-    </persoana>
+        <nationalitate> Spania </nationalitate>
+        <pozitie> Portar </pozitie>
+        <numar_tricou> 13 </numar_tricou>
+        <valoare_piata> 40mil </valoare_piata>
+        <contract>
+            <inceput> 2025-07-01 </inceput>
+            <sfarsit> 2030-06-30 </sfarsit>
+            <salariu_saptamanal> 120k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 100000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
 
-    <persoana id="2">
-        <nume> Spiridon </nume>
-        <prenume> Ovidiu </prenume>
+    <jucator id="2">
+        <nume> Szczesny </nume>
+        <prenume> Wojciech </prenume>
+        <varsta> 34 </varsta>
+        <nationalitate> Polonia </nationalitate>
+        <pozitie> Portar </pozitie>
+        <numar_tricou> 25 </numar_tricou>
+        <valoare_piata> 900k </valoare_piata>
+        <contract>
+            <inceput> 2024-10-01 </inceput>
+            <sfarsit> 2026-06-30 </sfarsit>
+            <salariu_saptamanal> 57k </salariu_saptamanal>
+            <clauze>
+                <clauza> Contract pe un an cu optiune de prelungire </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <!-- ==================== FUNDASI ==================== -->
+
+    <jucator id="3">
+        <nume> Balde </nume>
+        <prenume> Alejandro </prenume>
+        <varsta> 21 </varsta>
+        <nationalitate> Spania </nationalitate>
+        <pozitie> Fundas Stanga </pozitie>
+        <numar_tricou> 3 </numar_tricou>
+        <valoare_piata> 55mil </valoare_piata>
+        <contract>
+            <inceput> 2022-07-01 </inceput>
+            <sfarsit> 2028-06-30 </sfarsit>
+            <salariu_saptamanal> 32k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 1000000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="4">
+        <nume> Araujo </nume>
+        <prenume> Ronald </prenume>
+        <varsta> 25 </varsta>
+        <nationalitate> Uruguay </nationalitate>
+        <pozitie> Fundas Central </pozitie>
+        <numar_tricou> 4 </numar_tricou>
+        <valoare_piata> 20mil </valoare_piata>
+        <contract>
+            <inceput> 2024-07-01 </inceput>
+            <sfarsit> 2031-06-30 </sfarsit>
+            <salariu_saptamanal> 240k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 1000000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="5">
+        <nume> Cubarsi </nume>
+        <prenume> Pau </prenume>
+        <varsta> 18 </varsta>
+        <nationalitate> Spania </nationalitate>
+        <pozitie> Fundas Central </pozitie>
+        <numar_tricou> 5 </numar_tricou>
+        <valoare_piata> 80mil </valoare_piata>
+        <contract>
+            <inceput> 2024-07-01 </inceput>
+            <sfarsit> 2029-06-30 </sfarsit>
+            <salariu_saptamanal> 76k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 1000000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="6">
+        <nume> Christensen </nume>
+        <prenume> Andreas </prenume>
+        <varsta> 28 </varsta>
+        <nationalitate> Danemarca </nationalitate>
+        <pozitie> Fundas Central </pozitie>
+        <numar_tricou> 15 </numar_tricou>
+        <valoare_piata> 9mil </valoare_piata>
+        <contract>
+            <inceput> 2022-07-01 </inceput>
+            <sfarsit> 2026-06-30 </sfarsit>
+            <salariu_saptamanal> 173k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 400000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="7">
+        <nume> Kounde </nume>
+        <prenume> Jules </prenume>
+        <varsta> 26 </varsta>
+        <nationalitate> Franta </nationalitate>
+        <pozitie> Fundas Dreapta </pozitie>
+        <numar_tricou> 23 </numar_tricou>
+        <valoare_piata> 65mil </valoare_piata>
+        <contract>
+            <inceput> 2022-07-01 </inceput>
+            <sfarsit> 2030-06-30 </sfarsit>
+            <salariu_saptamanal> 300k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 1000000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="8">
+        <nume> Garcia </nume>
+        <prenume> Eric </prenume>
+        <varsta> 23 </varsta>
+        <nationalitate> Spania </nationalitate>
+        <pozitie> Fundas Central </pozitie>
+        <numar_tricou> 24 </numar_tricou>
+        <valoare_piata> 35mil </valoare_piata>
+        <contract>
+            <inceput> 2021-07-01 </inceput>
+            <sfarsit> 2026-06-30 </sfarsit>
+            <salariu_saptamanal> 150k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 400000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="9">
+        <nume> Martin </nume>
+        <prenume> Gerard </prenume>
+        <varsta> 22 </varsta>
+        <nationalitate> Spania </nationalitate>
+        <pozitie> Fundas Stanga </pozitie>
+        <numar_tricou> 18 </numar_tricou>
+        <valoare_piata> 25mil </valoare_piata>
+        <contract>
+            <inceput> 2024-07-01 </inceput>
+            <sfarsit> 2028-06-30 </sfarsit>
+            <salariu_saptamanal> 30k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 100000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="10">
+        <nume> Joao </nume>
+        <prenume> Cancelo </prenume>
+        <varsta> 31 </varsta>
+        <nationalitate> Portugalia </nationalitate>
+        <pozitie> Fundas Stanga </pozitie>
+        <numar_tricou> 2 </numar_tricou>
+        <valoare_piata> 9mil </valoare_piata>
+        <contract>
+            <inceput> 2026-01-13 </inceput>
+            <sfarsit> 2026-06-30 </sfarsit>
+            <salariu_saptamanal> 160k </salariu_saptamanal>
+            <clauze>
+                <clauza> Imprumutat de la AL Hilal </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <!-- ==================== MIJLOCASI ==================== -->
+
+    <jucator id="10">
+        <nume> Gavi </nume>
+        <prenume> Pablo </prenume>
         <varsta> 20 </varsta>
-        <email> SpiridonOvidiu@gmail.com </email>
-        <cnp> 2222567891234 </cnp>
-        <adresa>
-            <strada> Calea Romanului </strada>
-            <numar> Nr 400 </numar>
-            <judet> Neamt </judet>
-            <tara> Romania </tara>
-        </adresa>
-    </persoana>
+        <nationalitate> Spania </nationalitate>
+        <pozitie> Mijlocas </pozitie>
+        <numar_tricou> 6 </numar_tricou>
+        <valoare_piata> 30mil </valoare_piata>
+        <contract>
+            <inceput> 2022-07-01 </inceput>
+            <sfarsit> 2030-06-30 </sfarsit>
+            <salariu_saptamanal> 180k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 1000000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
 
-    <persoana id="3">
-        <nume> Turnea </nume>
-        <prenume> Catalin </prenume>
-        <varsta> 54 </varsta>
-        <email> TurneaCatalin@gmail.com </email>
-        <cnp> 1234567891111 </cnp>
-        <adresa>
-            <strada> Sforii </strada>
-            <numar> Nr 12 </numar>
-            <judet> Botosani </judet>
-            <tara> Romania </tara>
-        </adresa>
-    </persoana>
-</persoane>
+    <jucator id="11">
+        <nume> Pedri </nume>
+        <prenume> Pedro </prenume>
+        <varsta> 23 </varsta>
+        <nationalitate> Spania </nationalitate>
+        <pozitie> Mijlocas </pozitie>
+        <numar_tricou> 8 </numar_tricou>
+        <valoare_piata> 150mil </valoare_piata>
+        <contract>
+            <inceput> 2023-07-01 </inceput>
+            <sfarsit> 2030-06-30 </sfarsit>
+            <salariu_saptamanal> 240k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 1000000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="12">
+        <nume> de Jong </nume>
+        <prenume> Frenkie </prenume>
+        <varsta> 27 </varsta>
+        <nationalitate> Olanda </nationalitate>
+        <pozitie> Mijlocas </pozitie>
+        <numar_tricou> 21 </numar_tricou>
+        <valoare_piata> 45mil </valoare_piata>
+        <contract>
+            <inceput> 2019-07-01 </inceput>
+            <sfarsit> 2026-06-30 </sfarsit>
+            <salariu_saptamanal> 365k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 400000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="13">
+        <nume> Casado </nume>
+        <prenume> Marc </prenume>
+        <varsta> 21 </varsta>
+        <nationalitate> Spania </nationalitate>
+        <pozitie> Mijlocas Defensiv </pozitie>
+        <numar_tricou> 17 </numar_tricou>
+        <valoare_piata> 20mil </valoare_piata>
+        <contract>
+            <inceput> 2024-07-01 </inceput>
+            <sfarsit> 2028-06-30 </sfarsit>
+            <salariu_saptamanal> 24k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 100000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="14">
+        <nume> Bernal </nume>
+        <prenume> Marc </prenume>
+        <varsta> 18 </varsta>
+        <nationalitate> Spania </nationalitate>
+        <pozitie> Mijlocas </pozitie>
+        <numar_tricou> 22 </numar_tricou>
+        <valoare_piata> 30mil </valoare_piata>
+        <contract>
+            <inceput> 2024-07-01 </inceput>
+            <sfarsit> 2026-06-30 </sfarsit>
+            <salariu_saptamanal> 24k </salariu_saptamanal>
+            <clauze>
+                <clauza> Optiune de prelungire pana in 2029 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="15">
+        <nume> Olmo </nume>
+        <prenume> Dani </prenume>
+        <varsta> 26 </varsta>
+        <nationalitate> Spania </nationalitate>
+        <pozitie> Mijlocas Ofensiv </pozitie>
+        <numar_tricou> 20 </numar_tricou>
+        <valoare_piata> 60mil </valoare_piata>
+        <contract>
+            <inceput> 2024-07-01 </inceput>
+            <sfarsit> 2030-06-30 </sfarsit>
+            <salariu_saptamanal> 240k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 1000000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="16">
+        <nume> Lopez </nume>
+        <prenume> Fermin </prenume>
+        <varsta> 22 </varsta>
+        <nationalitate> Spania </nationalitate>
+        <pozitie> Mijlocas </pozitie>
+        <numar_tricou> 16 </numar_tricou>
+        <valoare_piata> 100mil </valoare_piata>
+        <contract>
+            <inceput> 2023-07-01 </inceput>
+            <sfarsit> 2029-06-30 </sfarsit>
+            <salariu_saptamanal> 140k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 1000000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <!-- ==================== ATACANTI ==================== -->
+
+    <jucator id="17">
+        <nume> Yamal </nume>
+        <prenume> Lamine </prenume>
+        <varsta> 17 </varsta>
+        <nationalitate> Spania </nationalitate>
+        <pozitie> Extrema Dreapta </pozitie>
+        <numar_tricou> 10 </numar_tricou>
+        <valoare_piata> 200mil </valoare_piata>
+        <contract>
+            <inceput> 2025-07-01 </inceput>
+            <sfarsit> 2031-06-30 </sfarsit>
+            <salariu_saptamanal> 320k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 1000000000 </clauza>
+                <clauza> Bonus pentru fiecare Balon de Aur castigat </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="18">
+        <nume> Raphinha </nume>
+        <prenume> Raphael </prenume>
+        <varsta> 28 </varsta>
+        <nationalitate> Brazilia </nationalitate>
+        <pozitie> Extrema </pozitie>
+        <numar_tricou> 11 </numar_tricou>
+        <valoare_piata> 80mil </valoare_piata>
+        <contract>
+            <inceput> 2022-07-01 </inceput>
+            <sfarsit> 2028-06-30 </sfarsit>
+            <salariu_saptamanal> 320k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 1000000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="19">
+        <nume> Lewandowski </nume>
+        <prenume> Robert </prenume>
+        <varsta> 36 </varsta>
+        <nationalitate> Polonia </nationalitate>
+        <pozitie> Atacant </pozitie>
+        <numar_tricou> 9 </numar_tricou>
+        <valoare_piata> 8mil </valoare_piata>
+        <contract>
+            <inceput> 2022-07-01 </inceput>
+            <sfarsit> 2026-06-30 </sfarsit>
+            <salariu_saptamanal> 400k </salariu_saptamanal>
+            <clauze>
+                <clauza> Optiune de prelungire automata daca joaca 55% din meciuri </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="20">
+        <nume> Rashford </nume>
+        <prenume> Marcus </prenume>
+        <varsta> 27 </varsta>
+        <nationalitate> Anglia </nationalitate>
+        <pozitie> Extrema Stanga </pozitie>
+        <numar_tricou> 14 </numar_tricou>
+        <valoare_piata> 40mil </valoare_piata>
+        <contract>
+            <inceput> 2025-01-01 </inceput>
+            <sfarsit> 2026-06-30 </sfarsit>
+            <salariu_saptamanal> 269k </salariu_saptamanal>
+            <clauze>
+                <clauza> Imprumut de la Manchester United </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="21">
+        <nume> Torres </nume>
+        <prenume> Ferran </prenume>
+        <varsta> 24 </varsta>
+        <nationalitate> Spania </nationalitate>
+        <pozitie> Atacant </pozitie>
+        <numar_tricou> 7 </numar_tricou>
+        <valoare_piata> 50mil </valoare_piata>
+        <contract>
+            <inceput> 2022-01-01 </inceput>
+            <sfarsit> 2027-06-30 </sfarsit>
+            <salariu_saptamanal> 192k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 1000000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+    <jucator id="22">
+        <nume> Bardghji </nume>
+        <prenume> Roony </prenume>
+        <varsta> 20 </varsta>
+        <nationalitate> Suedia </nationalitate>
+        <pozitie> Extrema </pozitie>
+        <numar_tricou> 28 </numar_tricou>
+        <valoare_piata> 15mil </valoare_piata>
+        <contract>
+            <inceput> 2025-07-01 </inceput>
+            <sfarsit> 2029-06-30 </sfarsit>
+            <salariu_saptamanal> 20k </salariu_saptamanal>
+            <clauze>
+                <clauza> Clauza de reziliere: 200000000 </clauza>
+            </clauze>
+        </contract>
+    </jucator>
+
+</jucatori>

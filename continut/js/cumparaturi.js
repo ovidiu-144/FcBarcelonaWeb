@@ -73,7 +73,7 @@ function stergeCatalog(){
     }
 }
 
-window.onload = function() {
-    setStorage(); // încărcăm catalogul și actualizăm tabela la încărcarea paginii
-}
+// window.onload = function() {
+//     setStorage(); // încărcăm catalogul și actualizăm tabela la încărcarea paginii
+// }
 

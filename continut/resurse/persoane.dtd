@@ -1,13 +1,18 @@
-<!ELEMENT persoane (persoana+)>
-<!ELEMENT persoana (nume, prenume, varsta, email, cnp, adresa)>
-<!ELEMENT adresa (strada, numar, judet, tara)>
-<!ATTLIST persoana id CDATA #REQUIRED>
+<!ELEMENT jucatori (jucator+)>
+<!ELEMENT jucator (nume, prenume, varsta, nationalitate, pozitie, numar_tricou, valoare_piata, contract)>
+<!ATTLIST jucator id CDATA #REQUIRED>
+
+<!ELEMENT contract (inceput, sfarsit, salariu_saptamanal, clauze)>
+<!ELEMENT clauze (clauza+)>
+
 <!ELEMENT nume (#PCDATA)>
 <!ELEMENT prenume (#PCDATA)>
 <!ELEMENT varsta (#PCDATA)>
-<!ELEMENT email (#PCDATA)>
-<!ELEMENT cnp (#PCDATA)>
-<!ELEMENT strada (#PCDATA)>
-<!ELEMENT numar (#PCDATA)>
-<!ELEMENT judet (#PCDATA)>
-<!ELEMENT tara (#PCDATA)>
+<!ELEMENT nationalitate (#PCDATA)>
+<!ELEMENT pozitie (#PCDATA)>
+<!ELEMENT numar_tricou (#PCDATA)>
+<!ELEMENT valoare_piata (#PCDATA)>
+<!ELEMENT inceput (#PCDATA)>
+<!ELEMENT sfarsit (#PCDATA)>
+<!ELEMENT salariu_saptamanal (#PCDATA)>
+<!ELEMENT clauza (#PCDATA)>
