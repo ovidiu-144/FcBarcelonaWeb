@@ -12,21 +12,22 @@
 
 <body>
     <h1>
-        Cumparaturi
+        Listă Transferuri
     </h1>
     <div>
-        <label for="nume">Nume:</label>
-        <input type="text" id="nume">
+        <label for="name">Nume:</label>
+        <input type="text" id="name">
         
-        <br><br>
-        
-        <label for="cantitate">Cantitate:</label>
-        <input type="text" id="cantitate">
+
 
         <br><br>
-        <button type= "button" id="btnAdauga" onclick="adaugaProdus()">Adaugă</button>
+        <button type= "button" id="btnAdauga" onclick="addPLayer()">Adaugă</button>
         <br>
-        <button type= "button" id="btnSterge" onclick="stergeCatalog()">Sterge Catalog (TOT)</button>
+        <button type= "button" id="btnDeletePlayer" onclick="deletePlayer()">Șterge jucător</button>
+        <br>
+        <button type= "button" id="btnSterge" onclick="deleteList()">Șterge lista de transferuri (TOT)</button>
+
+
     </div>
 
     <div>
@@ -38,16 +39,16 @@
     </div>
 
     <br><br>
-    <table id="tabelProduse" class="tabel">
+    <table id="playersTable" class="tabel">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Nume Produs</th>
-                <th>Cantitate</th>
+                <th>Jucător</th>
+                <th>Cotă de Piață</th>
             </tr>
         </thead>
         <tbody 
-            id="corpulTabelului">
+            id="playersTableBody">
             <tr>
                 <td colspan="3">Catalogul este gol</td>
             </tr>

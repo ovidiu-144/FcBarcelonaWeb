@@ -4,6 +4,11 @@ import threading
 import os
 import json
 
+# Pentru market value, crawling pe Transfermarkt
+import requests
+from bs4 import BeautifulSoup
+import time
+
 def content_type(type):
     if type == "html":
         return "text/html"
@@ -27,6 +32,56 @@ def content_type(type):
         return ""
 
 
+def get_player_market_value(player_name):
+
+    time.sleep(1)  # Adăugăm o întârziere pentru a evita blocarea de către Transfermarkt în cazul unor cereri frecvente
+    # 1. Pregătim URL-ul de căutare
+    search_url = f"https://www.transfermarkt.com/schnellsuche/ergebnis/schnellsuche?query={player_name}"
+    
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    }
+
+    try:
+        # 2. Căutăm jucătorul
+        response = requests.get(search_url, headers=headers)
+
+
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        # print(soup.prettify())
+
+
+        # Găsim tabelul cu rezultate și luăm primul jucător listat
+        # Transfermarkt afișează rezultatele într-un tabel cu clasa 'items'
+        player_row = soup.select_one("table.items > tbody > tr") 
+
+        # with open("debug.html", "w", encoding="utf-8") as f:
+        #     f.write(player_row.prettify())
+
+        if not player_row:
+            return "Jucătorul nu a fost găsit."
+
+        # Extragem link-ul catre profil si cota de piata direct din tabelul de căutare
+        # De obicei, cota de piață este în ultima coloană cu clasa 'rechts hauptlink'
+        market_value_cell = player_row.select_one("td.rechts.hauptlink")
+        
+        # Extragem si numele complet pentru confirmare
+        full_name_tag = player_row.select_one("td.hauptlink a")
+        full_name = full_name_tag.text.strip() if full_name_tag else player_name
+
+        if market_value_cell and market_value_cell.text.strip() != "-":
+            # return f"Cota de piață pentru {full_name}: {market_value_cell.text.strip()}"
+            return full_name, market_value_cell.text.strip()
+        else:
+            return full_name, "Nu a fost găsită o cotă de piață / Jucătorul este retras."
+            # return f"Jucătorul {full_name} a fost găsit, dar nu are o cotă de piață afișată."
+
+    except Exception:
+        return f"Eroare la obținerea cotei de piață pentru {player_name}."
+
+
+
 def handle_client(clientsocket, address):
     print (f"[THREAD {threading.current_thread().name}] S-a conectat un client: {address}")
     try:
@@ -45,8 +100,29 @@ def handle_client(clientsocket, address):
         method = start_line.split(' ')[0]
         resource = start_line.split(' ')[1]
 
-        # ── POST /api/utilizatori ────────────────────────────────────────
-        if method == 'POST' and resource == '/api/utilizatori':
+        if method == 'POST' and resource == '/api/market_value':
+            body = request.split('\r\n\r\n', 1)[1] if '\r\n\r\n' in request else ''
+            
+            # Body-ul vine ca JSON: {"player_name": "John Doe"}
+            data = json.loads(body)
+            player_name = data.get("player_name")
+
+            try:
+                full_name, market_value = get_player_market_value(player_name)
+                status = "200 OK"
+                response = json.dumps({"player_name": full_name, "market_value": market_value}, ensure_ascii=False).encode('utf-8')
+                type = "application/json; charset=utf-8"
+                accepts_gzip = False
+            except Exception as e:
+                print(f"[API] Eroare la obținerea cotei de piață pentru {player_name}: {e}")
+                full_name, market_value = "Eroare", f"Eroare la obținerea cotei de piață pentru {player_name}"
+                status = "500 Internal Server Error"
+                response = response = b"Internal Server Error"
+                type = "application/json; charset=utf-8"
+
+
+
+        elif method == 'POST' and resource == '/api/utilizatori':
             body = request.split('\r\n\r\n', 1)[1] if '\r\n\r\n' in request else ''
             
             # Body-ul vine ca JSON: {"utilizator": "Ion", "parola": "123"}

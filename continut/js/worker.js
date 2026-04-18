@@ -8,7 +8,7 @@ self.onmessage = function(e) {
     postMessage(tbody);
 };
 
-function afiseazaCatalog(catalog) {
+function afiseazaCatalog(playerList) {
 
     
     // alert("Catalogul a fost actualizat! Verifică tabela pentru detalii.");
@@ -16,12 +16,12 @@ function afiseazaCatalog(catalog) {
     let tbody = "";
 
     // 2. Parcurgem fiecare obiect din catalog folosind forEach
-    catalog.forEach((product) => {
+    playerList.forEach((player) => {
         // Creăm un element de tip rând (tr)
         tbody += `<tr>
-            <td>${product.id}</td>
-            <td>${product.nume}</td>
-            <td>${product.cantitate}</td>
+            <td>${player.id}</td>
+            <td>${player.name}</td>
+            <td>${player.value}</td>
         </tr>`;
     });
     if (tbody === "") {
@@ -47,8 +47,8 @@ function afiseazaCatalog(catalog) {
     //     // Setăm conținutul rândului folosind Template Literals
     //     rand.innerHTML = `
     //         <td>${produs.id}</td>
-    //         <td>${produs.nume}</td>
-    //         <td>${produs.cantitate}</td>
+    //         <td>${produs.name}</td>
+    //         <td>${produs.value}</td>
     //     `;
 
     //     // 3. Adăugăm rândul creat în corpul tabelului

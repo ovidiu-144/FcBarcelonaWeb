@@ -1,22 +1,32 @@
 //  import { MyStorage, LocalStorage, IndexedDB } from './js/storage.js';
 
-class Product {
-    constructor(nume, cantitate, id) {
-        this.nume = nume;
-        this.cantitate = cantitate;
+const barcelonaPLayers = [
+    "Joan Garcia", "Wojciech Szczesny", "Alejandro Balde", "Ronald Araujo", 
+    "Pau Cubarsi", "Andreas Christensen", "Jules Kounde", "Eric Garcia", 
+    "Gerard Martin", "Joao Cancelo", "Pablo Gavi", "Pedri", 
+    "Frenkie de Jong", "Marc Casado", "Marc Bernal", "Dani Olmo", 
+    "Fermin Lopez", "Lamine Yamal", "Raphael Raphinha", "Robert Lewandowski", 
+    "Marcus Rashford", "Ferran Torres", "Roony Bardghji"
+]
+
+
+class Player {
+    constructor(name, value, id) {
+        this.name = name;
+        this.value = value;
         this.id = id;
     }
 }
 
 const myWorker = new Worker('js/worker.js');
 
-let tbody = document.getElementById("corpulTabelului");
+let tbody = document.getElementById("playersTableBody");
 
 let activeStorage = new MyLocalStorage();
 
 
 myWorker.onmessage = (e) => {
-    let tbody = document.getElementById("corpulTabelului");
+    let tbody = document.getElementById("playersTableBody");
     tbody.innerHTML = e.data; // actualizăm doar conținutul tabelului, nu întregul element
     //result.textContent = e.data;
     console.log("Am primit mesajul de la worker: ", e.data);    
@@ -26,7 +36,7 @@ myWorker.onerror = (err) => {
     console.error("Eroare în worker:", err.message);
 };
 
-let catalog = [];
+let playerList = [];
 let id = 1;
 
 
@@ -39,37 +49,73 @@ async function setStorage(){
         await activeStorage.init();
     }
     let loadedCatalog = await activeStorage.load();
-    catalog = loadedCatalog || []; // încărcăm catalogul din nou folosind noua stocare selectată
-    myWorker.postMessage(catalog); // trimitem catalogul actualizat pentru a actualiza tabela
-    id = catalog.length ? catalog[catalog.length - 1].id + 1 : 1; // actualizăm ID-ul pentru a continua de la ultimul produs adăugat
+    playerList = loadedCatalog || []; // încărcăm lista de jucători din nou folosind noua stocare selectată
+    myWorker.postMessage(playerList); // trimitem lista actualizată pentru a actualiza tabela
+    id = playerList.length ? playerList[playerList.length - 1].id + 1 : 1; // actualizăm ID-ul pentru a continua de la ultimul jucător adăugat
 }
 
-function adaugaProdus() {
+async function addPlayer() {
     console.log("Adăugăm produsul în catalog...");
-    let nume = document.getElementById("nume").value;
-    let cantitate = document.getElementById("cantitate").value;
-    if (nume === "" || cantitate === "") {
+    let name = document.getElementById("name").value;
+    if (name === "") {
         alert("Te rog completează toate câmpurile!");
         return;
     }
-    let produs = new Product(nume, cantitate, id);
-    catalog.push(produs);
+    // Cautam numele folosind scriptul Python si asteptam rezulatul
+    const res = await fetch ('/api/market_value', {
+        method: 'POST',
+        headers: {
+                'Content-Type': 'application/json'
+            },
+        body: JSON.stringify({
+            player_name: name
+        })
+    });
+    if (res.status !== 200) {
+        alert("A apărut o eroare la căutarea jucătorului. Te rog încearcă din nou.");
+        return;
+    }
+
+    const data = await res.json();
+
+    if (barcelonaPLayers.includes(data.player_name)) {
+        alert("Jucătorul " + data.player_name + " este în lotul Barcelonei! Cota de piață: " + data.market_value);
+        return;
+    }
+
+    if (playerList.some(p => p.name === data.player_name)) {
+        alert("Jucătorul " + data.player_name + " a fost deja adăugat în catalog! Cota de piață: " + data.market_value);
+        return;
+    }
+
+    console.log("Cota de piață pentru " + data.player_name + ": " + data.market_value);
+
+    let produs = new Player(data.player_name, data.market_value, id);
+    playerList.push(produs);
     id++;
 
-    activeStorage.save(catalog);
+    await activeStorage.save(playerList);
 
-    document.getElementById("nume").value = "";
-    document.getElementById("cantitate").value = "";
-    myWorker.postMessage(catalog);
+    document.getElementById("name").value = "";
+    myWorker.postMessage(playerList);
 }
 
-function stergeCatalog(){
+function deleteList(){
     if (confirm("Ești sigur că vrei să ștergi tot catalogul?")) {
-        catalog = [];
+        playerList = [];
         activeStorage.delete(); // ștergem catalogul din stocare
-        myWorker.postMessage(catalog); // trimitem un catalog gol pentru a actualiza tabela
+        myWorker.postMessage(playerList); // trimitem un catalog gol pentru a actualiza tabela
         id = 1; // resetăm ID-ul pentru a începe de la 1 din nou
         // afiseazaCatalog();
+    }
+}
+
+function deletePlayer() {
+    let name = document.getElementById("name").value;
+    if (confirm("Ești sigur că vrei să ștergi jucătorul?")) {
+        playerList = playerList.filter(p => p.name !== name);
+        activeStorage.save(playerList);
+        myWorker.postMessage(playerList);
     }
 }
 
