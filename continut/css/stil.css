@@ -3,10 +3,38 @@
 body{ 
     margin: 0; 
     padding: 0; 
-    text-align: center; 
-} 
+    text-align: center;
+    background: #e6e8ec;
+}
 
-.meniu{
+.header-titlu {
+    background: #1a1a2e;
+    padding: 14px 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px 10px 0 0;
+    border-bottom: 3px solid #ffd700;
+}
+
+.header-club-name {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffd700;
+    letter-spacing: 2px;
+    line-height: 1.1;
+}
+
+.header-motto {
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 2px;
+}
+
+.menu{
     border-radius: 10px;
     list-style-type: none;
     margin: 0px;
@@ -14,20 +42,31 @@ body{
     background-color: #004d98;
     font-size: 30px;
 
+    /* display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); */
+
     display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
     justify-content: center;
     
-    gap: 60px;
+    gap: 50px;
 
     a {
         background-color: #a50044;
         color: white;
         font-family: Arial;
         text-decoration: none;
-        height: 100px;
-        padding: 5px;
+        height: clamp(50px, 8vw, 100px);
+        font-size: clamp(14px, 2vw, 30px);
+        padding: 5px clamp(4px, 1vw, 10px);
+
         display: flex;
         align-items: center;
+        justify-content: center;
+        text-align: center;
     }
     a:hover{
         background-color: #ff0000;
@@ -56,8 +95,8 @@ form {
     
 }
 
-.titlu {
-    font-size: 48px;
+.logo-title {
+    font-size: clamp(24px, 4vw, 35px);
     font-weight: bold;
     text-transform: uppercase;
     background: linear-gradient(to right, #edbb00 0%, #a50044 50%, #004d98 100%);
@@ -102,7 +141,7 @@ canvas {
         background: none;
         color: black;
     }
-    .meniu {
+    .menu {
         background: none;
         text-align: left;
         border: 1px solid #ccc;
@@ -111,7 +150,7 @@ canvas {
         justify-content: center;    
     }
 
-    .meniu a {
+    .menu a {
         background: none;
         color: black;
         display: inline-block;
@@ -125,22 +164,20 @@ canvas {
 
 /* Acasa.html */    
 
-.motto {
-    font-size: 1.1rem;
-    font-style: italic;
-    color: #ffd700;
-    letter-spacing: 3px;
-    margin: 0 0 1rem 0;
-}
+
 
 .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 2rem;
+    justify-content: center;
 }
  
 .stat-card {
+    min-width: 200px;
+    flex: 1 1 200px;
+    max-width: 300px;
     background: white;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
@@ -174,12 +211,8 @@ canvas {
     display: block;
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-weight: bolder;
 }
-
-
-
-
-
 
 .sectiune-titlu {
     font-size: 1rem;
@@ -193,10 +226,11 @@ canvas {
 }
 
 .info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 2rem;
+    justify-content: center;
 }
 
 .info-grid .stat-card:hover {
@@ -208,4 +242,29 @@ canvas {
 .info-grid:hover{
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 77, 152, 0.15);
+}
+
+.info-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 0.85rem;
+}
+
+.info-line .key { color: #999; }
+.info-line .value { color: #222; font-weight: bold; }
+
+.colors-wrap{
+    display:flex;
+    gap: 8px;
+    margin-top: 1rem;
+}
+
+.color-box{
+    flex: auto;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
 }
