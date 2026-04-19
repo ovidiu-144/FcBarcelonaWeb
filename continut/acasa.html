@@ -10,32 +10,72 @@
 
 
 <body>
+    <br><br>
+    <div class="stat-card">
+        
+        <h1>FC Barcelona</h1>
 
-        <h1>
-            Video
-        </h1>
-    <p>
-        Această pagina conține Informații despre tab-urile site-ului
-    </p>
+        <p class="motto">Més que un club</p>
+    </div>
 
-    <h2>
-        Despre.html
-    </h2>
-    <p>
-        => Conține Informații generale legate de continutul site ului
-    </p><br>
+    <p class="sectiune-titlu">Palmaresul clubului</p>
+        <div class="stats-grid">
+            <div class="stat-card" >
+                <span class="title">27</span>
+                <span class="eticheta">Titluri La Liga</span>
+            </div>
+            <div class="stat-card">
+                <span class="title">5</span>
+                <span class="eticheta">Champions League</span>
+            </div>
+            <div class="stat-card">
+                <span class="title">31</span>
+                <span class="eticheta">Cupe Rege</span>
+            </div>
+            <div class="stat-card">
+                <span class="title">1899</span>
+                <span class="eticheta">Anul fondării</span>
+            </div>
+            <div class="stat-card">
+                <span class="title">99K+</span>
+                <span class="eticheta">Membrii</span>
+            </div>
+        </div>
 
-    <h2>
-        Înregistrare.html
-    </h2>
-    <p>
-        => Conține detalii legate de inregistare utilizatorului
-    </p><br>
-    
-    <h2>
-        Video.html
-    </h2>
-    <p>
-        => Conține video-uri de pe youtube
-    </p>
+    <p class="sectiune-titlu">Ce găsești pe acest site</p>
+    <div class="info-grid">
+        <div class = "stat-card" onclick="schimbaContinut('despre')">
+            <span class="title">Acasa</span>
+            <p class="eticheta">Pagina principală</p>
+        </div>
+        <div class = "stat-card" onclick="schimbaContinut('inregistrare')">
+            <span class="title">Înregistrare</span>
+            <p class="eticheta">Creează-țti un cont pentru a deveni parte din comunitatea Culé.</p>
+        </div>
+        <div class = "stat-card" onclick="schimbaContinut('video')">
+            <span class="title">Video</span>
+            <p class="eticheta">Cele mai bune goluri, parade, și momente din sezonul actual.</p>
+        </div>
+        <div class = "stat-card" onclick="schimbaContinut('desen')">
+            <span class="title">Desen SVG</span>
+            <p class="eticheta">Logo-ul clubului desenat folosind SVG.</p>
+        </div>
+        <div class = "stat-card" onclick="schimbaContinut('invat')">
+            <span class="title">Învăț</span>
+            <p class="eticheta">Resurse educaționale pentru a învăța mai multe despre creearea paginii web.</p>
+        </div>
+        <div class = "stat-card" onclick="schimbaContinut('persoane')">
+            <span class="title">Jucători</span>
+            <p class="eticheta">Lotul actual al echipei, încărcat din fișierul XML.</p>
+        </div>
+        <div class = "stat-card" onclick="schimbaContinut('verifica')">
+            <span class="title">Autentificare</span>
+            <p class="eticheta">Conectare la contul personal pentru access la conținut dedicat faniilor.</p>
+        </div>
+        <div class = "stat-card" onclick="schimbaContinut('transferuri')">
+            <span class="title">Transferuri</span>
+            <p class="eticheta">Listă de jucători doriți de club, salvată în browser.</p>
+        </div>
+    </div>
+
 </body>

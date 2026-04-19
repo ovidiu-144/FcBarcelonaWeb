@@ -42,10 +42,10 @@ form {
     gap: 10px;
 }
 
-p::first-letter {
+/* p::first-letter {
     font-size: 120%;
     color: red;
-}
+} */
 
 .tabel{
     th,
@@ -121,4 +121,91 @@ canvas {
         font-size: 16px;
         text-decoration: underline;
     }
+}
+
+/* Acasa.html */    
+
+.motto {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #ffd700;
+    letter-spacing: 3px;
+    margin: 0 0 1rem 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+ 
+.stat-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1.2rem 1rem;
+    text-align: center;
+    border-top: 3px solid #004d98;
+}
+
+.stat-card h1 {
+    font-size: 2.8rem;
+    font-family: Georgia, serif;
+    letter-spacing: 2px;
+    color: #004d98;
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+
+.stat-card .title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #004d98;
+    display: block;
+    line-height: 1;
+}
+ 
+.stat-card .eticheta {
+    font-size: 0.78rem;
+    color: black;
+    margin-top: 0.3rem;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+
+
+
+
+.sectiune-titlu {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #004d98;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #004d98;
+    padding-bottom: 0.5rem;
+    margin: 2rem 0 1rem 0;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.info-grid .stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 77, 152, 0.15);
+    border-color: #004d98;
+}
+
+.info-grid:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 77, 152, 0.15);
 }
