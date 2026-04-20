@@ -1,10 +1,17 @@
 [
   {
-    "utilizator": "test",
-    "parola": "test"
-  },
-  {
-    "utilizator": "da",
-    "parola": "da"
+    "lastName": "Spiridon",
+    "firstName": "Ovidiu-Stefan",
+    "email": "spiridonovidiu14@gmail.com",
+    "userName": "Ovidiu_144",
+    "phone": "0711020332",
+    "password": "parola",
+    "sex": "M",
+    "favPlayer": "Raphael Raphinha",
+    "bornDate": "2005-04-14",
+    "bornTime": "05:28",
+    "age": "21",
+    "url": "https://nuampagina.com",
+    "desc": "messi Goat"
   }
 ]

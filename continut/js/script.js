@@ -1,4 +1,11 @@
-
+const barcelonaPlayers = [
+    "Joan Garcia", "Wojciech Szczesny", "Alejandro Balde", "Ronald Araujo", 
+    "Pau Cubarsi", "Andreas Christensen", "Jules Kounde", "Eric Garcia", 
+    "Gerard Martin", "Joao Cancelo", "Pablo Gavi", "Pedri", 
+    "Frenkie de Jong", "Marc Casado", "Marc Bernal", "Dani Olmo", 
+    "Fermin Lopez", "Lamine Yamal", "Raphael Raphinha", "Robert Lewandowski", 
+    "Marcus Rashford", "Ferran Torres", "Roony Bardghji"
+]
 
 function afisareData(){
     //alert ("Salut, bine ai venit pe site-ul meu!");
@@ -233,11 +240,11 @@ function myFunction(xml) {
 }
 
 
-function valideazaUtilizator() {
+function userConnect() {
     // Luăm valorile introduse de utilizator
-    let userIntrodus = document.getElementById('username').value;
-    let passIntrodus = document.getElementById('password').value;
-    let rezultatElement = document.getElementById('rezultat');
+    let user = document.getElementById('username').value;
+    let password = document.getElementById('password').value;
+    let resultElement = document.getElementById('rezultat');
 
     // Creăm cererea AJAX pentru a lua fișierul JSON
     var xhttp = new XMLHttpRequest();
@@ -245,24 +252,24 @@ function valideazaUtilizator() {
         // Verificăm dacă cererea a fost finalizată cu succes
         if (this.readyState == 4 && this.status == 200) {
             // Conversia textului JSON în obiect JavaScript
-            let utilizatori = JSON.parse(this.responseText);
-            let gasit = false;
+            let users = JSON.parse(this.responseText);
+            let found = false;
 
             // Verificăm dacă datele se potrivesc
-            for (let i = 0; i < utilizatori.length; i++) {
-                if (utilizatori[i].utilizator === userIntrodus && utilizatori[i].parola === passIntrodus) {
-                    gasit = true;
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].userName === user && users[i].password === password) {
+                    found = true;
                     break;
                 }
             }
 
             // Afișăm rezultatul
-            if (gasit) {
-                rezultatElement.innerHTML = "Utilizator și parolă corecte!";
-                rezultatElement.style.color = "green";
+            if (found) {
+                resultElement.innerHTML = "Utilizator și parolă corecte!";
+                resultElement.style.color = "green";
             } else {
-                rezultatElement.innerHTML = "Utilizator sau parolă incorectă!";
-                rezultatElement.style.color = "red";
+                resultElement.innerHTML = "Utilizator sau parolă incorectă!";
+                resultElement.style.color = "red";
             }
         }
     };
@@ -272,23 +279,187 @@ function valideazaUtilizator() {
     xhttp.send();
 }
 
+function checkUsernameEmail(userName, email){
+    // Creăm cererea AJAX pentru a lua fișierul JSON
+    return new Promise((resolve, reject) => {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            // Verificăm dacă cererea a fost finalizată cu succes
+            if (this.readyState == 4 && this.status == 200) {
+                // Conversia textului JSON în obiect JavaScript
+                let users = JSON.parse(this.responseText);
+                let status = "ok";
+                // Console.log (users);
+                // Verificăm dacă datele se potrivesc
+                for (let i = 0; i < users.length; i++) {
+                    if (users[i].userName === userName) {
+                        status = "userName";
+                        break;
+                    }
+                    if (users[i].email === email) {
+                        status = "email";
+                        break;
+                    }
+                }
+                resolve(status);
+            }
+            else if (this.readyState == 4){
+                reject("Eroare la încărcarea fișierului JSON: ", this.status);
+            }
+        };
+    
+    // Asigură-te că calea este corectă față de locul unde se află index.html
+    xhttp.open("GET", "resurse\\utilizatori.json", true);
+    xhttp.send();
+    });
+}
 
-function inregistreazaUtilizator() {
-    let user = document.getElementById('name').value;
-    let pass = document.getElementById('password').value;
+
+async function userRegister() {
+    let lastName = document.getElementById('lastName').value;
+    let firstName = document.getElementById('firstName').value;
+    let email = document.getElementById('email').value;
+    let userName = document.getElementById('userName').value;
+    let phone = document.getElementById('phone').value;
+    let password = document.getElementById('password').value;
+    let confirmPassword = document.getElementById('confirmPassword').value;
+    let sex = document.getElementById('sex').value;
+    let favPlayer = document.getElementById('favPlayer').value;
+    let bornDate = document.getElementById('bornDate').value;
+    let bornTime = document.getElementById('bornTime').value;
+    let age = document.getElementById('age').value;
+    let url = document.getElementById('url').value;
+    let desc = document.getElementById('desc').value;
     let mesaj = document.getElementById('mesajInregistrare');
 
-    let dateUtilizator = {
-        utilizator: user,
-        parola: pass
-    };
+    // if (lastName === "" || firstName === "" || email === "" || 
+    //         userName === "" || phone === "" || password === "" || 
+    //         sex === "" || favPlayer === "" || bornDate === "" || 
+    //         bornTime === "" || age === "" || url === "" || 
+    //         desc === "") {
+        
+    //     mesaj.innerHTML = "Completeaza toate câmpurile!";
+    //     mesaj.style.color = "red";
+    //     return;
+    // } 
+
+
+    var numberRegex = /^\d+$/;
+    var wordRegex = /^[A-Za-z]+$/; // mai modific la ea
+    var emailRegex = /^\S+@\S+\.\S+$/;
+    var urlRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+
+    if (wordRegex.test(firstName) === false || wordRegex.test(lastName) === false) {
+        mesaj.innerHTML = "Numele sau prenumele nu sunt valide! Sau nu esti de aci!";
+        mesaj.style.color = "red";
+        return;
+    }
+
+    if (emailRegex.test(email) === false) {
+        mesaj.innerHTML = "Adresa de email nu este validă! Scam";
+        mesaj.style.color = "red";
+        return;
+    }
+    try {
+
+        var result = await checkUsernameEmail(userName, email);
+
+        if (result === "userName") {
+            mesaj.innerHTML = "Numele de utilizator există deja! Alege altul!";
+            mesaj.style.color = "red";
+            return;
+        }
+        else if (result === "email") {
+            mesaj.innerHTML = "Adresa de email există deja! Alege altul!";
+            mesaj.style.color = "red";
+            return;
+        }
+        else if (result === "ok") {
+            console.log("UserName-ul si email-ul sunt disponibile!");
+        }
+    } catch (error) {
+        console.error(error);
+        mesaj.innerHTML = "Eroare la verificarea disponibilității numelui de utilizator și a adresei de email!";
+        mesaj.style.color = "red";
+        return;
+    }
+
+    if (numberRegex.test(phone) === false || phone.length != 10) {
+        mesaj.innerHTML = "Numărul de telefon invalid";
+        mesaj.style.color = "red";
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        mesaj.innerHTML = "Scrie mai bine parolele, nu se potrivesc!";
+        mesaj.style.color = "red";
+        return;
+    }
+  
+    if (age < 18) {
+        mesaj.innerHTML = "Mai ai de crescut până la 18 ani, nu te poți înregistra!";
+        mesaj.style.color = "red";
+        return;
+    }
+
+    var typeBornDate = new Date(bornDate);
+    var currentDate = new Date();
+    if (typeBornDate >= currentDate) {
+        mesaj.innerHTML = "Probabil ești din viitor, spune și tu când câstigă Barcelona Champions League!";
+        mesaj.style.color = "blue";
+        return;
+    }
+    if (currentDate.getFullYear() - typeBornDate.getFullYear() != age) {
+        mesaj.innerHTML = "Vârsta introdusă nu corespunde datei de naștere! Mincinosule!";
+        mesaj.style.color = "red";
+        return;
+    }
+    if (urlRegex.test(url) === false) {
+        mesaj.innerHTML = "Verifica URL-ul!";
+        mesaj.style.color = "red";
+        return;
+    }
+
+
+
+    // console.log("Datele introduse de utilizator:");
+    // console.log("Nume: " + lastName);
+    // console.log("Prenume: " + firstName);
+    // console.log("Email: " + email);
+    // console.log("Nume Utilizator: " + userName);
+    // console.log("Telefon: " + phone);
+    // console.log("Parolă: " + password);
+    // console.log("Confirmare Parolă: " + confirmPassword);
+    // console.log("Sex: " + sex);
+    // console.log("Jucător Preferat: " + favPlayer);
+    // console.log("Data Nașterii: " + bornDate);
+    // console.log("Ora Nașterii: " + bornTime);
+    // console.log("Vârstă: " + age);
+    // console.log("URL: " + url);
+    // console.log("Descriere: " + desc);
+
+    let userData = {
+        lastName: lastName,
+        firstName: firstName,
+        email: email,
+        userName: userName,
+        phone: phone,
+        password: password,
+        sex: sex,
+        favPlayer: favPlayer,
+        bornDate: bornDate,
+        bornTime: bornTime,
+        age: age,
+        url: url,
+        desc: desc
+    }
 
     // Creăm cererea AJAX pentru a trimite datele către server
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4) {
             if (this.status == 200) {
-                mesaj.innerHTML = "Utilizator înregistrat cu succes!";
+                mesaj.innerHTML = "Utilizator înregistrat cu succes! Bine ai venit Cule!";
                 mesaj.style.color = "green";
             } else {
                 mesaj.innerHTML = "Eroare la server: " + this.status;
@@ -304,7 +475,15 @@ function inregistreazaUtilizator() {
     xhttp.setRequestHeader("Content-Type", "application/json");
     
     // Transformăm obiectul JavaScript în șir JSON și îl trimitem
-    xhttp.send(JSON.stringify(dateUtilizator));
-
-
+    xhttp.send(JSON.stringify(userData));
 }
+
+// function updateDataList() {
+//     const dataList = document.getElementById('playersList');
+//     dataList.innerHTML = ''; // golim datalist-ul înainte de a-l actualiza
+//     barcelonaPlayers.forEach(player => {
+//         const option = document.createElement('option');
+//         option.value = player;
+//         dataList.appendChild(option);
+//     });
+// }

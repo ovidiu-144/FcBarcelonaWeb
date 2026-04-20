@@ -1,14 +1,5 @@
 //  import { MyStorage, LocalStorage, IndexedDB } from './js/storage.js';
 
-const barcelonaPLayers = [
-    "Joan Garcia", "Wojciech Szczesny", "Alejandro Balde", "Ronald Araujo", 
-    "Pau Cubarsi", "Andreas Christensen", "Jules Kounde", "Eric Garcia", 
-    "Gerard Martin", "Joao Cancelo", "Pablo Gavi", "Pedri", 
-    "Frenkie de Jong", "Marc Casado", "Marc Bernal", "Dani Olmo", 
-    "Fermin Lopez", "Lamine Yamal", "Raphael Raphinha", "Robert Lewandowski", 
-    "Marcus Rashford", "Ferran Torres", "Roony Bardghji"
-]
-
 
 class Player {
     constructor(name, value, id) {
@@ -78,23 +69,23 @@ async function addPlayer() {
 
     const data = await res.json();
 
-    if (barcelonaPLayers.includes(data.player_name)) {
+    if (barcelonaPlayers.includes(data.player_name)) {
         alert("Jucătorul " + data.player_name + " este în lotul Barcelonei! Cota de piață: " + data.market_value);
-        return;
     }
 
-    if (playerList.some(p => p.name === data.player_name)) {
+    else if (playerList.some(p => p.name === data.player_name)) {
         alert("Jucătorul " + data.player_name + " a fost deja adăugat în catalog! Cota de piață: " + data.market_value);
-        return;
     }
+    else {
 
-    console.log("Cota de piață pentru " + data.player_name + ": " + data.market_value);
+        console.log("Cota de piață pentru " + data.player_name + ": " + data.market_value);
 
-    let produs = new Player(data.player_name, data.market_value, id);
-    playerList.push(produs);
-    id++;
+        let produs = new Player(data.player_name, data.market_value, id);
+        playerList.push(produs);
+        id++;
 
-    await activeStorage.save(playerList);
+        await activeStorage.save(playerList);
+    }
 
     document.getElementById("name").value = "";
     myWorker.postMessage(playerList);

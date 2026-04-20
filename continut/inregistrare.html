@@ -9,74 +9,147 @@
 
 
 
+
 <body>
 
-    <h1>
-        Video
+    <h1 class="section-title">
+        Devino Culé! Inregistrează-te acum!
     </h1>
-    <p>
-        Această pagina conține formularul de inregistare pentru site
-    </p>
 
-    <form>
 
-        <label for="name">Nume:</label>
-        <input type="text" id="name" name="name">
+    <div class="form-card">
+        <form>
+            <p class="section-title" style="font-size: 1rem; color: #a50044;">Informații cont:</p>
 
-        <label for="prenume">Prenume:</label>
-        <input type="text" id="prenume" name="prenume">
+            <div class="camp-grid">
+                <div class="camp">
+                    <label for="lastName">Nume:</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Messi">
+                </div>
+    
+                <div class="camp">
+                    <label for="firstName">Prenume:</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Lionel">
+                </div>
+            </div>
 
-        <label for="password">Parolă:</label>
-        <input type="password" id="password" name="password">
+            <div class="camp" style="width: 100%;">
+                <label for="email">Email:</label>
+                <input type="email" id = "email" name="email" placeholder="barca@example.com">
+            </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id = "email" name="email">
+            <div class="camp-grid">
+                <div class="camp">
+                    <label for="userName">Nume Utilizator:</label>
+                    <input type="text" id = "userName" name="userName" placeholder="xKing_Messi10">
+                </div>
 
-        <label for="phone">Număr de telefon:</label>
-        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+                <div class="camp">
+                    <label for="phone">Număr de telefon:</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="0700111222">
+                </div>
+            </div>
 
-        <label for="checkbox"> Sunt de acord cu termenii si condițiile</label>
-        <input type="checkbox" id ="checkbox" name="checkbox" >
+            <div class="camp-grid">
+                <div class="camp">
+                    <label for="password">Parolă:</label>
+                    <input type="password" id="password" name="password" placeholder="****">
+                </div>
 
-        <label for="sex">Sex:</label>
-        <select name="sex" id="sex">
-            <option value="M">M</option>
-            <option value="F">F</option>
-        </select> 
+                <div class="camp">
+                    <label for="confirmPassword">Confirmă Parola:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="****">
+                </div>
+            </div>
 
-        <label for="food">Mancare preferată</label>
-        <input list="foods" name="food" id="food">
-        <datalist id="foods">
-            <option value="Pizza">
-            <option value="Sarmale">
-            <option value="Shaorma">
-            <option value="Pateu">
-            <option value="Mici">
-        </datalist><br>
+            
+            <p class="section-title" style="font-size: 1rem; color: #a50044;">Informații personale:</p>
 
-        <label for="color">Culoare Preferată</label>
-        <input type="color" name = "color" id = "color"><br>
+            <div class="camp-grid">
+                <div class="camp">
+                    <label for="sex">Sex:</label>
+                    <select name="sex" id="sex">
+                        <option value="M">Masculin</option>
+                        <option value="F">Feminin</option>
+                    </select> 
+                </div>
 
-        <label for="date">Data Nașterii</label>
-        <input type="date" name = "date" id = "date"><br>
+                <div class="camp">
+                    <label for="favPlayer">Jucător preferat</label>
+                    <input list="playersList" name="favPlayer" id="favPlayer" placeholder="Lamine Yamal">
+                    <datalist id="playersList">
+                        <option value="Joan Garcia">
+                        <option value="Wojciech Szczesny">
+                        <option value="Alejandro Balde">
+                        <option value="Ronald Araujo">
+                        <option value="Pau Cubarsi">
+                        <option value="Andreas Christensen">
+                        <option value="Jules Kounde">
+                        <option value="Eric Garcia">
+                        <option value="Gerard Martin">
+                        <option value="Joao Cancelo">
+                        <option value="Pablo Gavi">
+                        <option value="Pedri">
+                        <option value="Frenkie de Jong">
+                        <option value="Marc Casado">
+                        <option value="Marc Bernal">
+                        <option value="Dani Olmo">
+                        <option value="Fermin Lopez">
+                        <option value="Lamine Yamal">
+                        <option value="Raphael Raphinha">
+                        <option value="Robert Lewandowski">
+                        <option value="Marcus Rashford">
+                        <option value="Ferran Torres">
+                        <option value="Roony Bardghji">
+                    </datalist>
+                </div>
+            </div>
+            <div class="camp-grid">
+                <div class="camp">
+                    <label for="bornDate">Data Nașterii</label>
+                    <input type="date" name = "bornDate" id = "bornDate" placeholder="2005-06-24">
+                </div>
+                <div class="camp">
+                    <label for="bornTime">Ora Nașterii</label>
+                    <input type="time" name = "bornTime" id = "bornTime" placeholder="00:00">
+                </div>
+            </div>
+            
 
-        <label for="time">Ora Nașterii</label>
-        <input type="time" name = "time" id = "time"><br>
+            <div class="camp">
+                <label for="age">Vârsta</label>
+                <label id="ageVal">0</label>
+                <input type="range" name = "age" id = "age" min="1" max="101" onInput="document.getElementById('ageVal').textContent = this.value;">
+            </div>
+            
+            <div class="camp">
+                <label for="url">Pagină Personală (URL)</label>
+                <input type="url" name = "url" id = "url" placeholder="https://www.exemplu.com">
+            </div>
 
-        <label for="varsta">Vârsta</label>
-        <input type="range" name = "varsta" id = "varsta" min="0" max="101"><br>
+            <div class="camp">
+                <label for="desc">Descriere</label>
+                <input type="text" name = "desc" id ="desc" placeholder="Scrie o scurtă descriere despre tine...">
+            </div>
 
-        <label for="adresa">Adresa paginii personale</label>
-        <input type="url" name = "adresa" id = "adresa"><br>
+            <div class="camp">
+                <label for="color">Culoare Preferată</label>
+                <label id="colorVal">#000000</label>
+                <input type="color" name = "color" id = "color" onInput="document.getElementById('colorVal').textContent = this.value;">
+            </div>
+            
+            
+            <div class="checkbox-wrap">
+                <label for="checkbox"> Sunt de acord cu termenii si condițiile</label>
+                <input type="checkbox" id ="checkbox" name="checkbox" onchange="document.getElementById('registerButton').disabled = !this.checked;">
+            </div>
 
-        <label for="desc">Descriere</label>
-        <input type="text" name = "desc" id ="desc"><br>
+            <button id="registerButton" class="btn" type="button" value="Inregistrare" onclick="userRegister()" disabled>Inregistrare</button>
 
-        <!-- O sa luam doar numele si parola -->
-        <button type="button" value="Inregistrare" onclick="inregistreazaUtilizator()">Inregistrare</button>
+            <p id = "mesajInregistrare"></p>
 
-        <p id = "mesajInregistrare"></p>
-
-        <p>Informații luate de la <a href="https://www.w3schools.com/" target="_blank">W3Schools.com!</a></p>
-    </form>
+            <p>Informații luate de la <a href="https://www.w3schools.com/" target="_blank">W3Schools.com!</a></p>
+            <p>Informații pentru regex-uri <a href="https://uibakery.io/regex-library" target="_blank">uibakery.io</a></p>
+        </form>
+    </div>
 </body>

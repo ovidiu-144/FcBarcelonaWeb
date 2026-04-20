@@ -74,12 +74,12 @@ body{
     }
 }
 
-form {
+/* form {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-}
+} */
 
 /* p::first-letter {
     font-size: 120%;
@@ -214,8 +214,8 @@ canvas {
     font-weight: bolder;
 }
 
-.sectiune-titlu {
-    font-size: 1rem;
+.section-title {
+    font-size: 2rem;
     font-weight: bold;
     color: #004d98;
     text-transform: uppercase;
@@ -267,4 +267,89 @@ canvas {
     width: auto;
     height: auto;
     border-radius: 8px;
+}
+
+.camp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    text-align: left;
+}
+
+
+.camp { 
+    margin-bottom: 1rem; 
+    text-align: left;
+}
+ 
+.camp label {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0.35rem;
+    font-weight: bold;
+}
+
+.camp input,
+.camp select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: Arial, sans-serif;
+    color: #333;
+    box-sizing: border-box;
+    transition: border-color 0.15s;
+    background: #fafafa;
+    text-align: left;
+    display: block;
+}
+.camp input[type="color"] {
+    padding: 0;
+    height: 40px;
+}
+
+.camp input:focus,
+.camp select:focus {
+    outline: none;
+    border-color: #004d98;
+    background: white;
+}
+
+
+.form-card {
+    width: 100%;
+    max-width: 650px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    text-align: center;
+    padding: 2rem;
+    margin: 0 auto 1.5rem auto;
+    border-top: 3px solid #004d98;
+    box-sizing: border-box;
+}
+
+.checkbox-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.8rem 1rem;
+    background: #f8f9ff;
+    border-radius: 8px;
+    border: 1.5px solid #e8eeff;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: #a50044;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
 }
