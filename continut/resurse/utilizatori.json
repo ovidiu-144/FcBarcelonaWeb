@@ -13,5 +13,20 @@
     "age": "21",
     "url": "https://nuampagina.com",
     "desc": "messi Goat"
+  },
+  {
+    "lastName": "Tudor",
+    "firstName": "Spiridon",
+    "email": "tudorspiridon12@gmail.com",
+    "userName": "",
+    "phone": "0787367676",
+    "password": "",
+    "sex": "M",
+    "favPlayer": "",
+    "bornDate": "2000-03-21",
+    "bornTime": "",
+    "age": "26",
+    "url": "https://nuampagina.com",
+    "desc": ""
   }
 ]

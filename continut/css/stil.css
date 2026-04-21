@@ -94,8 +94,18 @@ body{
     margin: auto;
     
 }
+table, th, td {
+    border : 1px solid black;
+    border-collapse: collapse;
+    margin: auto;
+}
+th, td {
+    padding: 5px;
+}
 
-.logo-title {
+
+
+.mini-title {
     font-size: clamp(24px, 4vw, 35px);
     font-weight: bold;
     text-transform: uppercase;
@@ -223,6 +233,9 @@ canvas {
     border-bottom: 2px solid #004d98;
     padding-bottom: 0.5rem;
     margin: 2rem 0 1rem 0;
+}
+p.section-title {
+    font-size: 1rem;
 }
 
 .info-grid {
@@ -353,3 +366,16 @@ canvas {
     font-size: 1rem;
     font-family: Arial, sans-serif;
 }
+
+.btn:hover {
+    background: #ff0000;
+    transition: background 0.3s ease-in-out;
+}
+
+.simple-text{
+    font-size: 1rem;
+    font-weight: bold;
+    color: #004d98;
+    line-height: 1;
+}
+

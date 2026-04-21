@@ -11,87 +11,106 @@
 
 
 <body>
+    <div class = "stats-grid" style="gap: 10%;">
 
-    <h2>Afișare Date</h2>
-    <!-- Button pentru afisarea datei -->
-    <button type="button" onclick="afisareData()">Dată</button>
-    <p id="data"></p>
-
-
-    <!-- Buton pentru afisarea timpului curent -->
-    <button type="button" onclick="afisareTimp()">Ora</button>
-    <p id = "timp"></p>
+        <div class ="stat-card">
+            <h2 class ="mini-title">Afișare Date</h2>
+            <!-- Button pentru afisarea datei -->
+            <button class = "btn" type="button" onclick="dataPrint()">Dată</button>
+            <p class = "section-title" id="data"></p>
 
 
-    <!-- Button pentru afisarea URL-ului -->
-    <button type="button" onclick="afisareURL()">URL</button>
-    <p id = "url"></p>
-
-    <!-- Button pentru afisarea locatiei -->
-    <button type="button" onclick="afisareLocatie()">Locație</button>
-    <p id = "locatie"></p>
-
-    <!-- Button pentru numele si verisunea Browser-ului -->
-    <button type="button" onclick="afisareBrowser()">Nume-Versiune Browser</button>
-    <p id = "numeBrowser"></p>
-    <p id = "versiuneBrowser"></p>
-
-    <!-- Button pentru resetare valori -->
-    <button type="button" onclick="resetare()">Reset Răspunsuri</button>
+            <!-- Buton pentru afisarea timpului curent -->
+            <button class = "btn" type="button" onclick="timePrint()">Ora</button>
+            <p class = "section-title" id = "timp"></p>
 
 
-    <!-- A 2 a sectiune -->
-    <h2>Desenează</h2>
+            <!-- Button pentru afisarea URL-ului -->
+            <button class = "btn" type="button" onclick="urlPrint()">URL</button>
+            <p class = "section-title" id = "url"></p>
 
-    <section>
-        <label for="contColour">Alege culoarea conturului:</label>
-        <input type="color" id="contColour" name="contColour" value="#ff0000">
-        <br>
+            <!-- Button pentru afisarea locatiei -->
+            <button class = "btn" type="button" onclick="placePrint()">Locație</button>
+            <p class = "section-title" id = "locatie"></p>
 
-        <label for="fillColour">Alege culoarea de umplere:</label>
-        <input type="color" id="fillColour" name="fillColour" value="#004d98">
-        <br>
-        <br>
+            <!-- Button pentru numele si verisunea Browser-ului -->
+            <button class = "btn" type="button" onclick="browserPrint()">Nume-Versiune Browser</button>
+            <p class = "section-title" id = "numeBrowser"></p>
+            <p class = "section-title" id = "versiuneBrowser"></p>
 
-        <canvas id="myCanvas" width="300" height="150"></canvas>
-        <p id = "x1"></p>
-        <p id = "y1"></p>
+            <!-- Button pentru resetare valori -->
+            <button class = "btn" type="button" onclick="reset()">Reset Răspunsuri</button>
 
-        <p id = "x2"></p>
-        <p id = "y2"></p>
-    </section>
 
-    <section>
-        <label for="posInput">Poziție (index):</label>
-        <input type="number" id="posInput" value="1" min="1">
+            <!-- A 2 a sectiune -->
+            
+        </div>
 
-        <label for="colorPicker">Culoare:</label>
-        <input type="color" id="colorPicker" value="#ff0000">
+        <div class = "stat-card">
+            <h2 class ="mini-title">Desenează</h2>
 
-        <input type="button" value="Adaugă Linie" onclick="addRow()">
-        <input type="button" value="Adaugă Coloană" onclick="addColumn()">
-        <table class="tabel" id = "dynamicTable">
-            <tr>
-                <th>Nume</th>
-                <th>Goluri</th>
-                <th>Asisturi</th>
-            </tr>
-            <tr>
-                <td>Lionel Messi</td>
-                <td>672</td>
-                <td>303</td>
-            </tr>
-            <tr>
-                <td>César Rodríguez</td>
-                <td>225</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>Luis Suárez</td>
-                <td>195</td>
-                <td>113</td>
-            </tr>
-        </table>
-    </section>
+                <section>
+                    <label class ="simple-text" for="contColour">Alege culoarea conturului:</label>
+                    <input type="color" id="contColour" name="contColour" value="#ff0000">
+                    <br>
+
+                    <label class ="simple-text" for="fillColour">Alege culoarea de umplere:</label>
+                    <input type="color" id="fillColour" name="fillColour" value="#004d98">
+                    <br>
+                    <br>
+
+                    <canvas id="myCanvas" width="300" height="150"></canvas>
+                    
+                    <div class ="info-line">
+                        <p class = "simple-text" id = "x1"></p>
+                        <p class = "simple-text" id = "y1"></p>
+                    </div>
+                    <div class ="info-line">
+                        <p class = "simple-text" id = "x2"></p>
+                        <p class = "simple-text" id = "y2"></p>
+                    </div>
+                </section>
+
+
+                <h2 class ="mini-title">Modificare Tabel</h2>
+                <section>
+                    <label class ="simple-text" for="posInput">Poziție (index):</label>
+                    <input type="number" id="posInput" value="1" min="1">
+
+                    <label class ="simple-text" for="colorPicker">Culoare:</label>
+                    <input type="color" id="colorPicker" value="#ff0000">
+
+                    <br><br>
+                    <button class = "btn" type="button" onclick="addRow()"> Adaugă Linie</button>
+                    <br><br>
+                    <button class = "btn" type="button" onclick="addColumn()"> Adaugă Coloană</button>
+                    <br><br>
+                    <table id = "dynamicTable">
+                        <tr>
+                            <th>Nume</th>
+                            <th>Goluri</th>
+                            <th>Asisturi</th>
+                        </tr>
+                        <tr>
+                            <td>Lionel Messi</td>
+                            <td>672</td>
+                            <td>303</td>
+                        </tr>
+                        <tr>
+                            <td>César Rodríguez</td>
+                            <td>225</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Luis Suárez</td>
+                            <td>195</td>
+                            <td>113</td>
+                        </tr>
+                    </table>
+                </section>
+            </div>
+        </div>
+
+    </div>
 </body>
 

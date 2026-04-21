@@ -7,22 +7,22 @@ const barcelonaPlayers = [
     "Marcus Rashford", "Ferran Torres", "Roony Bardghji"
 ]
 
-function afisareData(){
+function dataPrint(){
     //alert ("Salut, bine ai venit pe site-ul meu!");
     let date = new Date();
     document.getElementById('data').innerHTML = "Data curenta este: " + date.toLocaleDateString();
 }
 
-function afisareTimp(){
+function timePrint(){
     let date = new Date();
     document.getElementById('timp').innerHTML = "Ora curentă este: " + date.toLocaleTimeString();
 }
 
-function afisareURL(){
+function urlPrint(){
     document.getElementById('url').innerHTML = "Adresa URL a paginii este: " + window.location.href;
 }
 
-function afisareLocatie(){
+function placePrint(){
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             document.getElementById('locatie').innerHTML = "Latitudine: " + position.coords.latitude + "<br>Longitudine: " + position.coords.longitude;
@@ -32,14 +32,14 @@ function afisareLocatie(){
     }
 }
 
-function afisareBrowser(){
+function browserPrint(){
     let broserName = navigator.appName;
     let browserVersion = navigator.appVersion;
     document.getElementById('numeBrowser').innerHTML = "Numele browserului este: " + broserName;
     document.getElementById('versiuneBrowser').innerHTML = "Versiunea browserului este: " + browserVersion;
 }   
 
-function resetare(){
+function reset(){
     document.getElementById('data').innerHTML = "";
     document.getElementById('timp').innerHTML = "";
     document.getElementById('url').innerHTML = "";
@@ -48,7 +48,7 @@ function resetare(){
     document.getElementById('versiuneBrowser').innerHTML = "";
 }
 
-function desenareDreptunghi(){
+function drawRect(){
     let canvas = document.getElementById('myCanvas');
     let ctx = canvas.getContext('2d');
     let fillColour = document.getElementById('fillColour').value;
@@ -82,13 +82,13 @@ function getMousePosition(canvas, event) {
 
     //primul click - setam x1, y1
     if (document.getElementById('x1').innerHTML == "") {
-        document.getElementById('x1').innerHTML = x;
-        document.getElementById('y1').innerHTML = y;
+        document.getElementById('x1').innerHTML = "x1 = " + x;
+        document.getElementById('y1').innerHTML = "y1 = " + y;
     }
     //al doilea click - setam x2, y2
     else if (document.getElementById('x2').innerHTML == "") {
-        document.getElementById('x2').innerHTML = x;
-        document.getElementById('y2').innerHTML = y;
+        document.getElementById('x2').innerHTML = "x2 = " + x;
+        document.getElementById('y2').innerHTML = "y2 = " + y;
     }
     //al treilea click - resetam totul
     else {
@@ -112,7 +112,7 @@ document.addEventListener('click', function(event) {
     if (event.target && event.target.id === 'myCanvas') {
         let canvas = event.target;
         getMousePosition(canvas, event);
-        desenareDreptunghi();
+        drawRect();
     }
 });
 
@@ -332,16 +332,16 @@ async function userRegister() {
     let desc = document.getElementById('desc').value;
     let mesaj = document.getElementById('mesajInregistrare');
 
-    // if (lastName === "" || firstName === "" || email === "" || 
-    //         userName === "" || phone === "" || password === "" || 
-    //         sex === "" || favPlayer === "" || bornDate === "" || 
-    //         bornTime === "" || age === "" || url === "" || 
-    //         desc === "") {
+    if (lastName === "" || firstName === "" || email === "" || 
+            userName === "" || phone === "" || password === "" || 
+            sex === "" || favPlayer === "" || bornDate === "" || 
+            bornTime === "" || age === "" || url === "" || 
+            desc === "") {
         
-    //     mesaj.innerHTML = "Completeaza toate câmpurile!";
-    //     mesaj.style.color = "red";
-    //     return;
-    // } 
+        mesaj.innerHTML = "Completeaza toate câmpurile!";
+        mesaj.style.color = "red";
+        return;
+    } 
 
 
     var numberRegex = /^\d+$/;
@@ -390,7 +390,7 @@ async function userRegister() {
         return;
     }
 
-    if (password !== confirmPassword) {
+    if (password !== confirmPassword || password.length < 6) {
         mesaj.innerHTML = "Scrie mai bine parolele, nu se potrivesc!";
         mesaj.style.color = "red";
         return;
