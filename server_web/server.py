@@ -4,7 +4,6 @@ import threading
 import os
 import json
 
-# Pentru market value, crawling pe Transfermarkt
 import requests
 from bs4 import BeautifulSoup
 import time
@@ -34,8 +33,7 @@ def content_type(type):
 
 def get_player_market_value(player_name):
 
-    time.sleep(1)  # Adăugăm o întârziere pentru a evita blocarea de către Transfermarkt în cazul unor cereri frecvente
-    # 1. Pregătim URL-ul de căutare
+    time.sleep(1)
     search_url = f"https://www.transfermarkt.com/schnellsuche/ergebnis/schnellsuche?query={player_name}"
     
     headers = {
@@ -43,39 +41,28 @@ def get_player_market_value(player_name):
     }
 
     try:
-        # 2. Căutăm jucătorul
         response = requests.get(search_url, headers=headers)
 
 
         soup = BeautifulSoup(response.content, 'html.parser')
 
-        # print(soup.prettify())
 
 
-        # Găsim tabelul cu rezultate și luăm primul jucător listat
-        # Transfermarkt afișează rezultatele într-un tabel cu clasa 'items'
         player_row = soup.select_one("table.items > tbody > tr") 
 
-        # with open("debug.html", "w", encoding="utf-8") as f:
-        #     f.write(player_row.prettify())
 
         if not player_row:
             return "Jucătorul nu a fost găsit."
 
-        # Extragem link-ul catre profil si cota de piata direct din tabelul de căutare
-        # De obicei, cota de piață este în ultima coloană cu clasa 'rechts hauptlink'
         market_value_cell = player_row.select_one("td.rechts.hauptlink")
         
-        # Extragem si numele complet pentru confirmare
         full_name_tag = player_row.select_one("td.hauptlink a")
         full_name = full_name_tag.text.strip() if full_name_tag else player_name
 
         if market_value_cell and market_value_cell.text.strip() != "-":
-            # return f"Cota de piață pentru {full_name}: {market_value_cell.text.strip()}"
             return full_name, market_value_cell.text.strip()
         else:
             return full_name, "Nu a fost găsită o cotă de piață / Jucătorul este retras."
-            # return f"Jucătorul {full_name} a fost găsit, dar nu are o cotă de piață afișată."
 
     except Exception:
         return f"Eroare la obținerea cotei de piață pentru {player_name}."
@@ -103,7 +90,6 @@ def handle_client(clientsocket, address):
         if method == 'POST' and resource == '/api/market_value':
             body = request.split('\r\n\r\n', 1)[1] if '\r\n\r\n' in request else ''
             
-            # Body-ul vine ca JSON: {"player_name": "John Doe"}
             data = json.loads(body)
             player_name = data.get("player_name")
 
@@ -125,7 +111,6 @@ def handle_client(clientsocket, address):
         elif method == 'POST' and resource == '/api/utilizatori':
             body = request.split('\r\n\r\n', 1)[1] if '\r\n\r\n' in request else ''
             
-            # Body-ul vine ca JSON: {"utilizator": "Ion", "parola": "123"}
             utilizator = json.loads(body)
 
             path = os.path.join("continut", "resurse", "utilizatori.json")
@@ -141,7 +126,6 @@ def handle_client(clientsocket, address):
             status = "200 OK"
             accepts_gzip = False
 
-        # ── GET fișiere statice ──────────────────────────────────────────
         else:
             try:
                 file = resource

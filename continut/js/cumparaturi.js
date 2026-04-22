@@ -1,4 +1,3 @@
-//  import { MyStorage, LocalStorage, IndexedDB } from './js/storage.js';
 
 
 class Player {
@@ -18,8 +17,7 @@ let activeStorage = new MyLocalStorage();
 
 myWorker.onmessage = (e) => {
     let tbody = document.getElementById("playersTableBody");
-    tbody.innerHTML = e.data; // actualizăm doar conținutul tabelului, nu întregul element
-    //result.textContent = e.data;
+    tbody.innerHTML = e.data;
     console.log("Am primit mesajul de la worker: ", e.data);    
 };
 
@@ -40,9 +38,9 @@ async function setStorage(){
         await activeStorage.init();
     }
     let loadedCatalog = await activeStorage.load();
-    playerList = loadedCatalog || []; // încărcăm lista de jucători din nou folosind noua stocare selectată
-    myWorker.postMessage(playerList); // trimitem lista actualizată pentru a actualiza tabela
-    id = playerList.length ? playerList[playerList.length - 1].id + 1 : 1; // actualizăm ID-ul pentru a continua de la ultimul jucător adăugat
+    playerList = loadedCatalog || [];
+    myWorker.postMessage(playerList);
+    id = playerList.length ? playerList[playerList.length - 1].id + 1 : 1;
 }
 
 async function addPlayer() {
@@ -52,7 +50,6 @@ async function addPlayer() {
         alert("Te rog completează toate câmpurile!");
         return;
     }
-    // Cautam numele folosind scriptul Python si asteptam rezulatul
     const res = await fetch ('/api/market_value', {
         method: 'POST',
         headers: {
@@ -94,10 +91,9 @@ async function addPlayer() {
 function deleteList(){
     if (confirm("Ești sigur că vrei să ștergi tot catalogul?")) {
         playerList = [];
-        activeStorage.delete(); // ștergem catalogul din stocare
-        myWorker.postMessage(playerList); // trimitem un catalog gol pentru a actualiza tabela
-        id = 1; // resetăm ID-ul pentru a începe de la 1 din nou
-        // afiseazaCatalog();
+        activeStorage.delete();
+        myWorker.postMessage(playerList);
+        id = 1;
     }
 }
 
@@ -110,7 +106,4 @@ function deletePlayer() {
     }
 }
 
-// window.onload = function() {
-//     setStorage(); // încărcăm catalogul și actualizăm tabela la încărcarea paginii
-// }
 

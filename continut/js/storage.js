@@ -42,14 +42,14 @@ class MyIndexedDB extends MyStorage {
             const request = indexedDB.open(this.dbName, 1);
 
             request.onupgradeneeded = (event) => {
-                const db = event.target.result; // obținem referința la baza de date
-                if (!db.objectStoreNames.contains(this.storeName)) { // verificăm dacă baza de date există deja
-                    db.createObjectStore(this.storeName, { keyPath: "id" }); // folosim "id" ca și cheie primară
+                const db = event.target.result;
+                if (!db.objectStoreNames.contains(this.storeName)) {
+                    db.createObjectStore(this.storeName, { keyPath: "id" });
                 }
             };
 
             request.onsuccess = (event) => {
-                this.db = event.target.result; // stocăm referința la baza de date în instanța clasei
+                this.db = event.target.result;
                 resolve();
             }
 
@@ -60,7 +60,7 @@ class MyIndexedDB extends MyStorage {
     }
 
     save(catalog) {
-        const tx = this.db.transaction(this.storeName, "readwrite"); // deschidem o tranzacție în modul readwrite pentru a putea adăuga date
+        const tx = this.db.transaction(this.storeName, "readwrite");
         const store = tx.objectStore (this.storeName); 
         
         store.clear();

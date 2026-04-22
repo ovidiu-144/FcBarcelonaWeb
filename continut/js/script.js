@@ -8,7 +8,6 @@ const barcelonaPlayers = [
 ]
 
 function dataPrint(){
-    //alert ("Salut, bine ai venit pe site-ul meu!");
     let date = new Date();
     document.getElementById('data').innerHTML = "Data curenta este: " + date.toLocaleDateString();
 }
@@ -80,25 +79,20 @@ function getMousePosition(canvas, event) {
     let x = event.clientX - rect.left;
     let y = event.clientY - rect.top;
 
-    //primul click - setam x1, y1
     if (document.getElementById('x1').innerHTML == "") {
         document.getElementById('x1').innerHTML = x;
         document.getElementById('y1').innerHTML = y;
     }
-    //al doilea click - setam x2, y2
     else if (document.getElementById('x2').innerHTML == "") {
         document.getElementById('x2').innerHTML = x;
         document.getElementById('y2').innerHTML = y;
     }
-    //al treilea click - resetam totul
     else {
-        //resetam coordonatele
         document.getElementById('x1').innerHTML = "";
         document.getElementById('y1').innerHTML = "";
         document.getElementById('x2').innerHTML = "";
         document.getElementById('y2').innerHTML = "";
 
-        //resetam canvasul
         let ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
@@ -106,9 +100,7 @@ function getMousePosition(canvas, event) {
 }
 
 
-// Adăugăm un event listener pentru click pe întregul document dupa ce pagina s-a încărcat complet
 document.addEventListener('click', function(event) {
-    // Verificăm dacă elementul pe care s-a dat click are ID-ul 'myCanvas'
     if (event.target && event.target.id === 'myCanvas') {
         let canvas = event.target;
         getMousePosition(canvas, event);
@@ -118,7 +110,6 @@ document.addEventListener('click', function(event) {
 
 
 
-///functie pentru adaugarea unei linii in tabel
 function addRow(){
     let table = document.getElementById('dynamicTable');
     let pos = parseInt(document.getElementById('posInput').value);
@@ -183,24 +174,6 @@ function loadPlayers() {
 }
 
 
-//forma XML
-    // <jucator id="1">
-    //     <nume> ter Stegen </nume>
-    //     <prenume> Marc-Andre </prenume>
-    //     <varsta> 32 </varsta>
-    //     <nationalitate> Germania </nationalitate>
-    //     <pozitie> Portar </pozitie>
-    //     <numar_tricou> 1 </numar_tricou>
-    //     <valoare_piata> 20000000 </valoare_piata>
-    //     <contract>
-    //         <inceput> 2017-07-01 </inceput>
-    //         <sfarsit> 2028-06-30 </sfarsit>
-    //         <salariu_saptamanal> 220000 </salariu_saptamanal>
-    //         <clauze>
-    //             <clauza> Clauza de reziliere: 400000000 </clauza>
-    //         </clauze>
-    //     </contract>
-    // </jucator>
 
 
 function myFunction(xml) {
@@ -231,7 +204,6 @@ function myFunction(xml) {
                     contract.getElementsByTagName("sfarsit")[0].textContent + "</td><td>" +
                     contract.getElementsByTagName("salariu_saptamanal")[0].textContent;
         } else {
-            // Dacă nu există contract, punem celule goale să nu stricăm tabelul
             table += "<td>-</td><td>-</td><td>-</td>";
         }
         table += "</td></tr>";
@@ -242,21 +214,16 @@ function myFunction(xml) {
 var connected = false;
 function userConnect() {
     
-    // Luăm valorile introduse de utilizator
     let user = document.getElementById('username').value;
     let password = document.getElementById('password').value;
     let resultElement = document.getElementById('rezultat');
 
-    // Creăm cererea AJAX pentru a lua fișierul JSON
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-        // Verificăm dacă cererea a fost finalizată cu succes
         if (this.readyState == 4 && this.status == 200) {
-            // Conversia textului JSON în obiect JavaScript
             let users = JSON.parse(this.responseText);
             let found = false;
 
-            // Verificăm dacă datele se potrivesc
             for (let i = 0; i < users.length; i++) {
                 if (users[i].userName === user && users[i].password === password) {
                     found = true;
@@ -264,10 +231,7 @@ function userConnect() {
                 }
             }
 
-            // Afișăm rezultatul
             if (found) {
-                // resultElement.innerHTML = "Utilizator și parolă corecte!";
-                // resultElement.style.color = "green";
                 connected = true;
                 document.getElementById('connect').hidden = true;
                 document.getElementById('disconnect').hidden = false;
@@ -280,7 +244,6 @@ function userConnect() {
         }
     };
     
-    // Asigură-te că calea este corectă față de locul unde se află index.html
     xhttp.open("GET", "resurse\\utilizatori.json", true);
     xhttp.send();
 }
@@ -292,17 +255,12 @@ function userDisconnect() {
 }
 
 function checkUsernameEmail(userName, email){
-    // Creăm cererea AJAX pentru a lua fișierul JSON
     return new Promise((resolve, reject) => {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
-            // Verificăm dacă cererea a fost finalizată cu succes
             if (this.readyState == 4 && this.status == 200) {
-                // Conversia textului JSON în obiect JavaScript
                 let users = JSON.parse(this.responseText);
                 let status = "ok";
-                // Console.log (users);
-                // Verificăm dacă datele se potrivesc
                 for (let i = 0; i < users.length; i++) {
                     if (users[i].userName === userName) {
                         status = "userName";
@@ -320,7 +278,6 @@ function checkUsernameEmail(userName, email){
             }
         };
     
-    // Asigură-te că calea este corectă față de locul unde se află index.html
     xhttp.open("GET", "resurse\\utilizatori.json", true);
     xhttp.send();
     });
@@ -357,7 +314,7 @@ async function userRegister() {
 
 
     var numberRegex = /^\d+$/;
-    var wordRegex = /^[A-Za-z]+$/; // mai modific la ea
+    var wordRegex = /^[A-Za-z]+$/;
     var emailRegex = /^\S+@\S+\.\S+$/;
     var urlRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
 
@@ -434,21 +391,6 @@ async function userRegister() {
 
 
 
-    // console.log("Datele introduse de utilizator:");
-    // console.log("Nume: " + lastName);
-    // console.log("Prenume: " + firstName);
-    // console.log("Email: " + email);
-    // console.log("Nume Utilizator: " + userName);
-    // console.log("Telefon: " + phone);
-    // console.log("Parolă: " + password);
-    // console.log("Confirmare Parolă: " + confirmPassword);
-    // console.log("Sex: " + sex);
-    // console.log("Jucător Preferat: " + favPlayer);
-    // console.log("Data Nașterii: " + bornDate);
-    // console.log("Ora Nașterii: " + bornTime);
-    // console.log("Vârstă: " + age);
-    // console.log("URL: " + url);
-    // console.log("Descriere: " + desc);
 
     let userData = {
         lastName: lastName,
@@ -466,7 +408,6 @@ async function userRegister() {
         desc: desc
     }
 
-    // Creăm cererea AJAX pentru a trimite datele către server
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4) {
@@ -480,22 +421,10 @@ async function userRegister() {
         }
     };
 
-    // Deschidem cererea POST către calea virtuală
     xhttp.open("POST", "/api/utilizatori", true);
     
-    // Setăm header-ul pentru a informa serverul că trimitem date JSON
     xhttp.setRequestHeader("Content-Type", "application/json");
     
-    // Transformăm obiectul JavaScript în șir JSON și îl trimitem
     xhttp.send(JSON.stringify(userData));
 }
 
-// function updateDataList() {
-//     const dataList = document.getElementById('playersList');
-//     dataList.innerHTML = ''; // golim datalist-ul înainte de a-l actualiza
-//     barcelonaPlayers.forEach(player => {
-//         const option = document.createElement('option');
-//         option.value = player;
-//         dataList.appendChild(option);
-//     });
-// }
