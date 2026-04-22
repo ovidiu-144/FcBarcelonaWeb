@@ -2,7 +2,7 @@
 <!DOCTYPE jucatori SYSTEM "persoane.dtd">
 <jucatori>
 
-    <!-- ==================== PORTARI ==================== -->
+    
 
     <jucator id="1">
         <nume> Garcia </nume>
@@ -40,7 +40,7 @@
         </contract>
     </jucator>
 
-    <!-- ==================== FUNDASI ==================== -->
+    
 
     <jucator id="3">
         <nume> Balde </nume>
@@ -186,7 +186,7 @@
         </contract>
     </jucator>
 
-    <!-- ==================== MIJLOCASI ==================== -->
+    
 
     <jucator id="10">
         <nume> Gavi </nume>
@@ -314,7 +314,7 @@
         </contract>
     </jucator>
 
-    <!-- ==================== ATACANTI ==================== -->
+    
 
     <jucator id="17">
         <nume> Yamal </nume>
