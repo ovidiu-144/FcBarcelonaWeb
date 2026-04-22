@@ -110,5 +110,38 @@
         </g>      
         <rect x="0" y="400" width="410" height="80" fill="url(#grad1)" />
         <text fill="black" font-size="45" font-family="Verdana" x="0" y="450">Logo Fc Barcelona</text>
+        
+        <!-- Minge de fotbal -->
+        <g transform="translate(200,600)">
+            <!-- gradient pentru minge -->
+            <defs>
+                <radialGradient id="ballGrad">
+                    <stop offset="0%" stop-color="white"/>
+                    <stop offset="100%" stop-color="lightgray"/>
+                </radialGradient>
+            </defs>
+
+            <!-- cerc principal -->
+            <circle cx="0" cy="0" r="80" fill="url(#ballGrad)" stroke="black" stroke-width="3">
+                <!-- animatie puls -->
+                <animate attributeName="r" values="80;85;80" dur="2s" repeatCount="indefinite"/>
+            </circle>
+
+            <!-- hexagon central -->
+            <polygon points="0,-30 25,-15 25,15 0,30 -25,15 -25,-15"
+                    fill="black"/>
+
+            <!-- cateva pentagoane -->
+            <circle cx="0" cy="-60" r="15" fill="black"/>
+            <circle cx="60" cy="0" r="15" fill="black"/>
+            <circle cx="-60" cy="0" r="15" fill="black"/>
+            <circle cx="0" cy="60" r="15" fill="black"/>
+
+            <!-- linie decorativa -->
+            <line x1="-80" y1="0" x2="80" y2="0" stroke="black" stroke-dasharray="5,5"/>
+
+            <!-- text -->
+            <text x="-40" y="120" font-size="20" fill="black">Football</text>
+        </g>
     </svg>
 </body>
