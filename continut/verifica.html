@@ -9,17 +9,28 @@
 
 
 <body>
-    <h1>Verificare</h1>
+    <h1 class="section-title">Conectare</h1>
 
-    <label for="username">Utilizator:</label>
-    <input type="text" id="username" name="username"><br><br>
+    <div id = "connect" class="stat-card" style="margin: auto;">
+        <div class = "camp">
+            <label id = for="username">Utilizator:</label>
+            <input type="text" id="username" name="username">
+        </div>
 
-    <label for="password">Parolă:</label>
-    <input type="password" id="password" name="password"><br><br>
+        <div class = "camp">
+            <label for="password">Parolă:</label>
+            <input type="password" id="password" name="password">
+        </div>
+        <button class="btn" type="button" onclick="userConnect()">Verifică</button>
+        <p class = "simple-text" id = "rezultat"></p>
+    </div>
 
-    <button type="button" onclick="valideazaUtilizator()">Verifică</button>
-
-    <p id = "rezultat"></p>
+    <br><br>
+    <div id = "disconnect" hidden>    
+        <button class="btn" type="button" onclick="userDisconnect()" style="width: 50%;">Deconectare</button>
+        <br><br>
+        <img src="imagini\barca_team.jpg" alt="lot Fc Barcelona" width="50%" height="50%">
+    </div>
 
 </body>
 

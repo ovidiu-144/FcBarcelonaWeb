@@ -171,7 +171,7 @@ function schimbaContinut(resursa, tip = "html") {
 }
 
 
-function loadDoc() {
+function loadPlayers() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -239,8 +239,9 @@ function myFunction(xml) {
     document.getElementById("demo").innerHTML = table;
 }
 
-
+var connected = false;
 function userConnect() {
+    
     // Luăm valorile introduse de utilizator
     let user = document.getElementById('username').value;
     let password = document.getElementById('password').value;
@@ -265,8 +266,13 @@ function userConnect() {
 
             // Afișăm rezultatul
             if (found) {
-                resultElement.innerHTML = "Utilizator și parolă corecte!";
-                resultElement.style.color = "green";
+                // resultElement.innerHTML = "Utilizator și parolă corecte!";
+                // resultElement.style.color = "green";
+                connected = true;
+                document.getElementById('connect').hidden = true;
+                document.getElementById('disconnect').hidden = false;
+                document.getElementById('username').value = "";
+                document.getElementById('password').value = "";
             } else {
                 resultElement.innerHTML = "Utilizator sau parolă incorectă!";
                 resultElement.style.color = "red";
@@ -277,6 +283,12 @@ function userConnect() {
     // Asigură-te că calea este corectă față de locul unde se află index.html
     xhttp.open("GET", "resurse\\utilizatori.json", true);
     xhttp.send();
+}
+
+function userDisconnect() {
+    document.getElementById('connect').hidden = false;
+    document.getElementById('disconnect').hidden = true;
+    connected = false;
 }
 
 function checkUsernameEmail(userName, email){
