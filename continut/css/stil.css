@@ -56,7 +56,7 @@ body{
     a {
         background-color: #a50044;
         color: white;
-        font-family: Arial;
+        font-family: Georgia, serif;
         text-decoration: none;
         height: clamp(50px, 8vw, 100px);
         font-size: clamp(14px, 2vw, 30px);
