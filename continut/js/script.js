@@ -82,13 +82,13 @@ function getMousePosition(canvas, event) {
 
     //primul click - setam x1, y1
     if (document.getElementById('x1').innerHTML == "") {
-        document.getElementById('x1').innerHTML = "x1 = " + x;
-        document.getElementById('y1').innerHTML = "y1 = " + y;
+        document.getElementById('x1').innerHTML = x;
+        document.getElementById('y1').innerHTML = y;
     }
     //al doilea click - setam x2, y2
     else if (document.getElementById('x2').innerHTML == "") {
-        document.getElementById('x2').innerHTML = "x2 = " + x;
-        document.getElementById('y2').innerHTML = "y2 = " + y;
+        document.getElementById('x2').innerHTML = x;
+        document.getElementById('y2').innerHTML = y;
     }
     //al treilea click - resetam totul
     else {
