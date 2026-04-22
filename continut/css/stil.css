@@ -39,7 +39,7 @@ body{
     list-style-type: none;
     margin: 0px;
     padding: 0px;
-    background-color: #004d98;
+    background-color: #1a1a2e   ;
     font-size: 30px;
 
     /* display: grid;
@@ -51,7 +51,8 @@ body{
     gap: 1rem;
     margin-bottom: 2rem;
     justify-content: center;
-    
+    border-bottom: 3px solid #ffd700;
+
     gap: 50px;
 
     a {

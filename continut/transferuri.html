@@ -11,34 +11,29 @@
 
 
 <body>
-    <h1>
+    <h1 class ="section-title">
         Listă Transferuri
     </h1>
-    <div>
-        <label for="name">Nume:</label>
-        <input type="text" id="name">
-        
-
-
+    <div class = "stat-card" style="margin: auto;">
+        <div class = "camp">
+            <label for="name">Nume:</label>
+            <input type="text" id="name">
+        </div> 
+        <button class = "btn" type= "button" id="btnAdauga" onclick="addPlayer()">Adaugă</button>
         <br><br>
-        <button type= "button" id="btnAdauga" onclick="addPlayer()">Adaugă</button>
-        <br>
-        <button type= "button" id="btnDeletePlayer" onclick="deletePlayer()">Șterge jucător</button>
-        <br>
-        <button type= "button" id="btnSterge" onclick="deleteList()">Șterge lista de transferuri (TOT)</button>
+        <button class = "btn" type= "button" id="btnDeletePlayer" onclick="deletePlayer()">Șterge jucător</button>
+        <br><br>
+        <button class = "btn" type= "button" id="btnSterge" onclick="deleteList()">Șterge lista de transferuri (TOT)</button>
+        <br><br>
 
-
-    </div>
-
-    <div>
-        <p>Alege modalitate de stocare:</p>
-        <select name="storageType" id="storageType" onchange="setStorage()">
+        <p class = "simple-text">Alege modalitate de stocare:</p>
+        <select class = "simple-text" name="storageType" id="storageType" onchange="setStorage()">
             <option value="localStorage">LocalStorage</option>
             <option value="indexedDB">IndexedDB</option>
         </select> 
     </div>
+    <br>
 
-    <br><br>
     <table id="playersTable" class="tabel">
         <thead>
             <tr>
