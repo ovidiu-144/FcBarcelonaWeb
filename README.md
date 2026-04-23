@@ -1,6 +1,8 @@
 # FC Barcelona Web
 
-Aplicație web statică + server Python, realizată pentru un proiect de Programare Web, cu tematică FC Barcelona.
+Aplicație web statică + server Python, realizată pentru un proiect de programare web, cu tematică FC Barcelona.
+
+> Documentația este redactată în limba română.
 
 ## Ce include proiectul
 
@@ -15,7 +17,7 @@ Aplicație web statică + server Python, realizată pentru un proiect de Program
 
 ## Structură repository
 
-- `continut/` – fișierele front-end (HTML, CSS, JS, imagini, resurse XML/JSON)
+- `continut/` – fișierele interfeței web (HTML, CSS, JS, imagini, resurse XML/JSON)
 - `continut/js/script.js` – logică principală UI (navigare, formulare, autentificare, tabel XML)
 - `continut/js/cumparaturi.js` – logica listei de transferuri
 - `continut/js/storage.js` – abstractizare stocare LocalStorage / IndexedDB
